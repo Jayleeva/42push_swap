@@ -124,7 +124,7 @@ Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont dir
 
 ### reverse rotate
 1. Stocker le pointeur recu en argument dans deux copies separees: une qui servira de "curseur" pour parcourir la liste, et une autre qui stock. ``current = *top; top_cpy = *top;``
-2. Faire une boucle while qui deplace la copie "curseur" tant qu'elle ne pointe pas sur NULL (pour trouver l'avant-dernier chainon). ``while (current->next->next != NULL){current = current->next;}``
+2. Faire une boucle while qui deplace la copie "curseur" tant que le chainon suivant ne pointe pas sur NULL (pour trouver l'avant-dernier chainon). ``while (current->next->next != NULL){current = current->next;}``
 3. Stocker le chainon suivant le "curseur" dans une copie (dernier chainon actuellement). ``bottom = current->next;``
 4. Faire pointer cette copie sur celle du sommet, pour qu'elle devienne le premier chainon. ``bottom->next = top_cpy;``
 5. Faire pointer l'avant-dernier chainon sur NULL, pour qu'il devienne dernier. ``current->next = NULL;``
