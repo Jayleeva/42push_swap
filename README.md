@@ -65,6 +65,13 @@ Pas clair? Peut-etre faut-il nous pencher sur ce a quoi servent les structures.
 
 Basiquement, une structure permet de creer des "sous-variables" a un endroit pour toutes les variables du type de la structure. Ici, au lieu de creer manuellement un int a chaque fois que je cree un nouveau chainon, je dis que chaque chainon, deja cree ou futur, a le potentiel d'avoir un int ou stocker sa valeur. Chaque chainon peut y acceder simplement a l'aide de l'ecriture suivante: ``your_node_name->value``. La fleche ``->`` indique "cette variable a une "sous-variable" definie dans sa structure, et je veux y acceder". Ainsi, nous pouvons aussi acceder au "*next", avec la meme methode: ``your_node_name->next``. Ce qui nous donne l'adresse du prochain chainon. Et voila notre liste chainee: chaque chainon peut contenir sa propre valeur, ET l'adresse du chainon suivant! 
 
+Mais ce n'est pas tout... On peut cumuler les fleches! Par exemple, si je veux acceder a la valeur du 2eme chainon, je n'ai qu'a ecrire: ``your_node_name->next->value``. Et si je veux l'adresse du 3eme? ``your_node_name->next->next``. Etc. 
+
+Bon, c'est bien beau, mais si ma chaine fait plus de 20, 500, 1000000000 chainons, et que je veux acceder au 42eme, je vais quand meme pas ecrire plus de 40 fleches, non? Non.
+
+### Naviguer dans une liste chainee
+
+
 
 
 # Algorithme de tri
