@@ -28,14 +28,35 @@ Pour comprendre les listes chainées, comparons-les avec les tableaux.
 
 Un tableau réserve un espace mémoire dans lequel il peut stocker des valeurs, les unes a la suite des autres au sein de l'espace réservé. Ces valeurs sont donc physiquement voisines les unes des autres. On accede a chacune facilement grace a un index. Pour imager, on pourrait dire que les valeurs d'un tableau sont toutes dans un meme immeuble, chacune dans leur propre appartement indiqué par l'index.
 
-La liste chainée en revanche met en lien des valeurs éparpillées dans la mémoire, en utilisant des pointeurs: la premiere pointe sur la deuxieme, qui pointe sur la troisieme, et ainsi de suite; la derniere pointe sur NULL. Pour imager, on pourrait dire que les valeurs d'une liste chainée sont les postes d'un rallye, chacun menant au poste suivant. Pour en trouver un spécifique, il faut commencer par le début et parcourir le chemin jusqu'au poste recherché. Dit comme ca, les liste chainées, ca a l'air tres nul. Cependant, elles offrent un avantage non négligeable dans un programme de tri: la ou un tableau devrait decaler toutes ses valeurs pour en ajouter ou en enlever une tout en gérant l'espace mémoire, la liste chainée n'a qu'a modifier ses pointeurs.
+La liste chainée en revanche met en lien des valeurs éparpillées dans la mémoire, en utilisant des pointeurs: la premiere pointe sur la deuxieme, qui pointe sur la troisieme, et ainsi de suite; la derniere pointe sur NULL. Pour imager, on pourrait dire que les valeurs d'une liste chainée sont les postes d'un rallye, chacun menant au poste suivant. Pour en trouver un spécifique, il faut commencer par le début et parcourir le chemin jusqu'au poste recherché. Dit comme ca, les liste chainées, ca a l'air tres nul. Cependant, elles offrent un avantage non négligeable dans un programme de tri: la ou un tableau devrait decaler toutes ses valeurs pour en ajouter ou en enlever une tout en gérant constamment l'espace mémoire, la liste chainée n'a qu'a modifier ses pointeurs.
 
 ## Comment écrire une liste chainée?
-Si vous n'etes pas a l'aise avec les pointeurs, accrochez-vous.
+Si vous n'etes pas a l'aise avec les pointeurs, accrochez-vous (ca va aller).
 
+### Structures
+Tout d'abord, pour ce projet du moins, on a besoin d'une structure, dont voici un exemple:
+```
+typedef struct node
+{
+	int		  value;
+	struct	node *next;
+}			    node_t;
+```
+On peut aussi l'ecrire ainsi:
+```
+typedef struct node node_t
+{
+	int		  value;
+	struct	node *next;
+};
+```
+La reprise du nom de la structure suivie d'un _t semble etre une convention de nommage qui permet de distinguer le "modele" de la structure et son instance concrete (du moins c'est ainsi que je le comprends).
 
-```
-```
+``typedef`` permet de definir un nouvel element.
+
+``struct`` precise que cet element sera une structure.
+
+Vous pouvez nommer votre structure comme vous le souhaitez. Ici, j'ai choisi "node".
 
 
 
