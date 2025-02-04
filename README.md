@@ -118,9 +118,9 @@ Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont dir
 ### rotate
 1. Stocker le pointeur recu en argument dans deux copies separees: une qui servira de "curseur" pour parcourir la liste, et une autre qui stock. ``current = *top; top_cpy = *top;``
 2. Faire une boucle while qui deplace la copie "curseur" tant qu'elle ne pointe pas sur NULL. ``while (current->next != NULL){current = current->next;}``
-3. Deplacer le sommmet en lui assignant son suivant.
-4. Faire pointer la copie "curseur" sur la 2eme copie.
-5. Faire pointer la 2eme copie sur NULL.
+3. Deplacer le sommmet en lui assignant son suivant. ``top = top->next;``
+4. Faire pointer la copie "curseur" sur la 2eme copie. ``current->next = top_copy;``
+5. Faire pointer la 2eme copie sur NULL. ``top_cpy->next = NULL;``
 
 # Algorithme de tri
 ## Algorithme turc
