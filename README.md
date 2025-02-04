@@ -12,3 +12,7 @@ Projet du 3ème cercle du cursus 42
 # Listes chainees
 
 ```
+```
+
+# Algorithme de tri
+## Algorithme turc
