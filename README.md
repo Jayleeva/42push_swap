@@ -58,11 +58,12 @@ La reprise du nom de la structure suivie d'un _t semble etre une convention de n
 
 ``your_struct_name`` donne un nom personnalise a votre structure.
 
-Comme vous le voyez, cet exemple de structure contient un int appele "value": il servira a stocker la valeur du maillon de la chaine; par exemple, si c'est le premier chainon et qu'on a recu les arguments ``2 453 86 9``, il stockera ``2``. 
+Comme vous le voyez, cet exemple de structure contient un int appele "value": il servira a stocker la valeur du chainon de la chaine; par exemple, si c'est le premier chainon et qu'on a recu les arguments ``2 453 86 9``, il stockera ``2``. 
 L'exemple contient egalement quelque chose appele "*next". Mais pourquoi diable son type est-il le meme que celui qu'on definit avec ``typedef``, comme une sorte de structureception ? Et pourquoi y a-t-il une etoile devant? Il y a une etoile parce que c'est un pointeur, et il est du type meme qu'on definit dans notre structure parce qu'on veut qu'il puisse pointer sur un autre chainon, lui-meme de ce type-la.
 
 Pas clair? Peut-etre faut-il nous pencher sur ce a quoi servent les structures.
 
+Basiquement, une structure permet de creer des "sous-variables" a un endroit pour toutes les variables du type de la structure. Ici, au lieu de creer manuellement un int a chaque fois que je cree un nouveau chainon, je dis que chaque chainon, deja cree ou futur, a le potentiel d'avoir un int ou stocker sa valeur. Chaque chainon peut y acceder simplement a l'aide de l'ecriture suivante: ``your_node_name->value``. La fleche ``->`` indique "cette variable a une "sous-variable" definie dans sa structure, et je veux y acceder". Ainsi, nous pouvons aussi acceder au "*next", avec la meme methode: ``your_node_name->next``. Ce qui nous donne l'adresse du prochain chainon.
 
 # Algorithme de tri
 ## Algorithme turc
