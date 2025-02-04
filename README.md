@@ -106,6 +106,14 @@ Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont dir
 3. Faire pointer la copie du 2eme chainon sur la copie du 1er.
 4. Assigner la copie du 2eme chainon au pointeur recu en argument pour le mettre a jour.
 
+### push
+*!! Identifiez quelle pile doit transmettre un chainon a l'autre.*
+1. Verifier si la pile qui doit transmettre un chainon est vide: si c'est le cas, return. Sinon, on continue.
+2. Stocker le sommet actuel de la pile qui doit transmettre un chainon dans une copie. ``giving_top_cpy = *giving_top``
+3. Deplacer le sommet de la pile qui transmet en lui assignant son suivant: ``*giving_top = (*giving_top)->next``
+4. Stocker le sommet actuel de la pile qui recoit un chainon dans une copie. ``receiving_top_cpy = *receiving_top``
+5. Assigner la copie du sommet de la pile qui transmet au sommet de la pile qui recoit. ``*receiving_top = giving_top_cpy``
+6. Faire pointer le nouveau sommet de la pile qui a recu un chainon sur la copie de son ancien sommet. ``*(*receiving_top)->next = receiving_top_cpy``
 
 # Algorithme de tri
 ## Algorithme turc
