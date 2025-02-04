@@ -117,14 +117,14 @@ Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont dir
 
 ### rotate
 1. Stocker le pointeur recu en argument dans deux copies separees: une qui servira de "curseur" pour parcourir la liste, et une autre qui stock. ``current = *top; top_cpy = *top;``
-2. Faire une boucle while qui deplace la copie "curseur" tant qu'elle ne pointe pas sur NULL. ``while (current->next != NULL){current = current->next;}``
+2. Faire une boucle while qui deplace la copie "curseur" tant qu'elle ne pointe pas sur NULL (pour trouver le *dernier* chainon). ``while (current->next != NULL){current = current->next;}``
 3. Deplacer le sommmet en lui assignant son suivant. ``*top = top->next;``
 4. Faire pointer la copie "curseur" sur la 2eme copie, pour qu'elle devienne le premier chainon. ``current->next = top_cpy;``
 5. Faire pointer la 2eme copie sur NULL, pour qu'elle devienne le dernier chainon. ``top_cpy->next = NULL;``
 
 ### reverse rotate
 1. Stocker le pointeur recu en argument dans deux copies separees: une qui servira de "curseur" pour parcourir la liste, et une autre qui stock. ``current = *top; top_cpy = *top;``
-2. Faire une boucle while qui deplace la copie "curseur" tant que le chainon suivant ne pointe pas sur NULL (pour trouver l'avant-dernier chainon). ``while (current->next->next != NULL){current = current->next;}``
+2. Faire une boucle while qui deplace la copie "curseur" tant que *le chainon suivant* ne pointe pas sur NULL (pour trouver *l'avant-dernier* chainon). ``while (current->next->next != NULL){current = current->next;}``
 3. Stocker le chainon suivant le "curseur" dans une copie (dernier chainon actuellement). ``bottom = current->next;``
 4. Faire pointer cette copie sur celle du sommet, pour qu'elle devienne le premier chainon. ``bottom->next = top_cpy;``
 5. Faire pointer l'avant-dernier chainon sur NULL, pour qu'il devienne dernier. ``current->next = NULL;``
