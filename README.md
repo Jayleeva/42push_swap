@@ -9,7 +9,7 @@ Projet du 3ème cercle du cursus 42
 - rotate : décaler tous les int d'une stack vers le haut, en passant alors le premier en dernier (si A: ra; si B: rb; si les deux: rr).
 - reverse rotate : décaler tous les int d'une stack vers le bas, en passant alors le dernier en premier (si A: rra; si B: rrb; si les deux: rrr).
 
-# Gestion des erreurs
+### Gestion des erreurs
 Vous devez verifier que les arguments recus sont bien:
 - des chiffres.
 - plus precisement des int (pas de virgules, et rien en-dehors de int_min et int_max).
