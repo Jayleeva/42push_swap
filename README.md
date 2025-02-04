@@ -101,10 +101,10 @@ while (copy->next != NULL)
 Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont directement modifier nos listes chainees. Puisqu'on travaille avec des pointeurs, pas besoin pour nos fonctions "actions" de retourner quoi que ce soit.
 
 ### swap
-Stocker le pointeur recu en argument (sommet actuel de la pile) ainsi que le chainon suivant dans des copies separees.
-Faire pointer la copie du 1er chainon sur le 3eme chainon.
-Faire pointer la copie du 2eme chainon sur la copie du 1er.
-Assigner la copie du 2eme chainon au pointeur recu en argument pour le mettre a jour.
+1. Stocker le pointeur recu en argument (sommet actuel de la pile) ainsi que le chainon suivant dans des copies separees.
+2. Faire pointer la copie du 1er chainon sur le 3eme chainon.
+3. Faire pointer la copie du 2eme chainon sur la copie du 1er.
+4. Assigner la copie du 2eme chainon au pointeur recu en argument pour le mettre a jour.
 
 
 # Algorithme de tri
