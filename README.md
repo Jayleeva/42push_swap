@@ -72,7 +72,7 @@ Bon, c'est bien beau, mais si ma chaine fait plus de 20, 500, 1000000000 chainon
 ### Naviguer dans une liste chainee
 
 
-ATTENTION: comme on utilise des pointeurs, il faut faire bien attention a ce qu'on modifie! Si vous recevez un pointeur, vous recevez en realite une adresse memoire, sur laquelle s'effectueront tous les changements que vous appliquez au pointeur. C'est justement ce qu'on veut dans certains cas, et c'est precisement ce qu'on ne veut pas dans d'autres. Prenez l'habitude de conscientiser la nature de ce que vous recevezen arguments!
+ATTENTION: comme on utilise des pointeurs, il faut faire bien attention a ce qu'on modifie! Si vous recevez un pointeur, vous recevez en realite une adresse memoire, sur laquelle s'effectueront tous les changements que vous appliquez au pointeur. C'est justement ce qu'on veut dans certains cas, et c'est precisement ce qu'on ne veut pas dans d'autres. Prenez l'habitude de conscientiser la nature de ce que vous recevez en arguments!
 
 
 
