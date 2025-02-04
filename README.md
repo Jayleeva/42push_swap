@@ -20,6 +20,9 @@ ATTENTION, les arguments doivent pouvoir etre traites de la meme facon, peu impo
 - ils sont passes entre guillemets comme une seule string (ex.: "2 453 86 9").
 - ils sont TOUS passes entre guillemets comme plusieurs string (ex.: "2" "453" "86" "9").
 
+### Optimisation
+Le nombre d'actions effectuees pour trier doit etre minimal. On ne veut pas juste un programme qui trie, on en veut un qui trie vite et evite les calculs inutiles.
+
 # Listes chainées
 Pour ce projet, vous pouvez tout a fait choisir d'utiliser des tableaux. Cependant, les listes chainées offrent des avantages intéressants. 
 
