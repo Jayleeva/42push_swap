@@ -116,7 +116,7 @@ Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont dir
 6. Faire pointer le nouveau sommet de la pile qui a recu un chainon sur la copie de son ancien sommet. ``(*receiving_top)->next = receiving_top_cpy;``
 
 ### rotate
-1. Stocker le pointeur recu en argument dans deux copies separees: une qui servira de "curseur" pour parcourir la liste, et une autre qui stock. ``current = *top``
+1. Stocker le pointeur recu en argument dans deux copies separees: une qui servira de "curseur" pour parcourir la liste, et une autre qui stock. ``current = *top; top_cpy = *top;``
 2. Faire une boucle while qui deplace la copie "curseur" tant qu'elle ne pointe pas sur NULL. ``while (current->next != NULL){current = current->next;}``
 3. Deplacer le sommmet en lui assignant son suivant.
 4. Faire pointer la copie "curseur" sur la 2eme copie.
