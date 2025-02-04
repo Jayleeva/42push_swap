@@ -101,10 +101,11 @@ while (copy->next != NULL)
 	copy = copy->next;
 ```
 ## Passer une liste chainee en argument
-Votre liste chainee est un pointeur sur pointeur! En consequence, quand vous declarez des fonctions qui en recoivent, il faut vous inspirer de cette ecriture: ``void your_function(**list)``. Oui, vous avez bien vu, ce n'est pas une faute de frappe: il ya bien DEUX etoiles.
+Les listes chainees passees par le main sont des pointeurs sur pointeur! En consequence, quand vous declarez des fonctions qui en recoivent, il faut vous inspirer de cette ecriture: ``void your_function(**list)``. Oui, vous avez bien vu, ce n'est pas une faute de frappe: il ya bien DEUX etoiles.
 
 Je n'ai pas encore bien compris le pourquoi du comment, mais:
-- quand vous passez votre liste la premiere fois (soit depuis le main a priori), il faut utiliser l'eperluette. ``your_function(&list)``
+- quand vous creez vos listes, il faut les declarer comme des simples pointeurs du type de votre structure ``your_struct_name_t	*list;``, MAIS
+- quand vous passez votre liste la premiere fois (soit depuis le main a priori), il faut utiliser l'eperluette. ``your_function(&list)`` (ce que je crois avoir compris: cela permet de passer non pas la valeur de la liste mais bien son adresse; puisque c'est deja un pointeur, cela en fait donc... un pointeur sur pointeur)
 - ensuite, vous pouvez vous en passer. ``your_function(list)``
 - dans vos fonctions, quand vous voulez acceder a votre liste directement, il faut le signifier avec un asterisque; les copies que vous voudrez en faire devront egalement etre des pointeurs. En revanche, pour acceder a vos copies, plus besoin d'asterisque une fois la declaration passee (voir "naviguer dans une liste chainee" ci-dessus).
 
