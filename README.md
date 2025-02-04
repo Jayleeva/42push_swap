@@ -21,7 +21,7 @@ ATTENTION, les arguments doivent pouvoir etre traites de la meme facon, peu impo
 - ils sont TOUS passes entre guillemets comme plusieurs string (ex.: "2" "453" "86" "9").
 
 # Listes chainées
-Pour ce projet, vous pouvez tout a fait choisir d'utiliser des tableaux. Cependant, les listes chainées offrent des avantages intéressants. Si vous n'etes pas trop a la traine dans le cursus, je vous recommande d'au moins vous y essayer.
+Pour ce projet, vous pouvez tout a fait choisir d'utiliser des tableaux. Cependant, les listes chainées offrent des avantages intéressants. 
 
 ## Qu'est-ce qu'une liste chainée?
 Pour comprendre les listes chainées, comparons-les avec les tableaux.
