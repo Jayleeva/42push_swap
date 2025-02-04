@@ -63,7 +63,9 @@ L'exemple contient egalement quelque chose appele "*next". Mais pourquoi diable 
 
 Pas clair? Peut-etre faut-il nous pencher sur ce a quoi servent les structures.
 
-Basiquement, une structure permet de creer des "sous-variables" a un endroit pour toutes les variables du type de la structure. Ici, au lieu de creer manuellement un int a chaque fois que je cree un nouveau chainon, je dis que chaque chainon, deja cree ou futur, a le potentiel d'avoir un int ou stocker sa valeur. Chaque chainon peut y acceder simplement a l'aide de l'ecriture suivante: ``your_node_name->value``. La fleche ``->`` indique "cette variable a une "sous-variable" definie dans sa structure, et je veux y acceder". Ainsi, nous pouvons aussi acceder au "*next", avec la meme methode: ``your_node_name->next``. Ce qui nous donne l'adresse du prochain chainon.
+Basiquement, une structure permet de creer des "sous-variables" a un endroit pour toutes les variables du type de la structure. Ici, au lieu de creer manuellement un int a chaque fois que je cree un nouveau chainon, je dis que chaque chainon, deja cree ou futur, a le potentiel d'avoir un int ou stocker sa valeur. Chaque chainon peut y acceder simplement a l'aide de l'ecriture suivante: ``your_node_name->value``. La fleche ``->`` indique "cette variable a une "sous-variable" definie dans sa structure, et je veux y acceder". Ainsi, nous pouvons aussi acceder au "*next", avec la meme methode: ``your_node_name->next``. Ce qui nous donne l'adresse du prochain chainon. Et voila notre liste chainee: chaque chainon peut contenir sa propre valeur, ET l'adresse du chainon suivant! 
+
+
 
 # Algorithme de tri
 ## Algorithme turc
