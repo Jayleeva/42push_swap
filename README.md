@@ -34,30 +34,34 @@ La liste chainée en revanche met en lien des valeurs éparpillées dans la mém
 Si vous n'etes pas a l'aise avec les pointeurs, accrochez-vous (ca va aller).
 
 ### Structures
-Tout d'abord, pour ce projet du moins, on a besoin d'une structure, dont voici un exemple:
+Tout d'abord, pour ce projet du moins, on a besoin d'une structure, dont voici l'architecture de base:
 ```
-typedef struct node
+typedef struct your_struct_name
 {
-	int		  value;
-	struct	node *next;
-}			    node_t;
+	int		  		value;
+	struct	your_struct_name 	*next;
+}			    		your_struct_name_t;
 ```
 On peut aussi l'ecrire ainsi:
 ```
-typedef struct node node_t
+typedef struct your_struct_name your_struct_name_t
 {
-	int		  value;
-	struct	node *next;
+	int		  		value;
+	struct	your_struct_name	*next;
 };
 ```
 La reprise du nom de la structure suivie d'un _t semble etre une convention de nommage qui permet de distinguer le "modele" de la structure et son instance concrete (du moins c'est ainsi que je le comprends).
 
-``typedef`` permet de definir un nouvel element.
+``typedef`` permet de definir un nouveau type d'element.
 
-``struct`` precise que cet element sera une structure.
+``struct`` precise que ce type sera une structure.
 
-Vous pouvez nommer votre structure comme vous le souhaitez. Ici, j'ai choisi "node".
+``your_struct_name`` donne un nom personnalise a votre structure.
 
+Comme vous le voyez, cet exemple de structure contient un int appele "value": il servira a stocker la valeur du maillon de la chaine; par exemple, si c'est le premier chainon et qu'on a recu les arguments ``2 453 86 9``, il stockera ``2``. 
+L'exemple contient egalement quelque chose appele "*next". Mais pourquoi diable son type est-il le meme que celui qu'on definit avec ``typedef``, comme une sorte de structureception ? Et pourquoi y a-t-il une etoile devant? Il y a une etoile parce que c'est un pointeur, et il est du type meme qu'on definit dans notre structure parce qu'on veut qu'il puisse pointer sur un autre chainon, lui-meme de ce type-la.
+
+Pas clair? Peut-etre faut-il nous pencher sur ce a quoi servent les structures.
 
 
 # Algorithme de tri
