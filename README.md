@@ -9,6 +9,17 @@ Projet du 3ème cercle du cursus 42
 - rotate : décaler tous les int d'une stack vers le haut, en passant alors le premier en dernier (si A: ra; si B: rb; si les deux: rr).
 - reverse rotate : décaler tous les int d'une stack vers le bas, en passant alors le dernier en premier (si A: rra; si B: rrb; si les deux: rrr).
 
+# Gestion des erreurs
+Vous devez verifier que les arguments recus sont bien:
+- des chiffres.
+- plus precisement des int (pas de virgules, et rien en-dehors de int_min et int_max).
+- uniques (pas de repetitions).
+
+ATTENTION, les arguments doivent pouvoir etre traites de la meme facon, peu importe si:
+- ils sont passes sans guillemets (ex.: 2 453 86 9).
+- ils sont passes entre guillemets comme une seule string (ex.: "2 453 86 9").
+- ils sont TOUS passes entre guillemets comme plusieurs string (ex.: "2" "453" "86" "9").
+
 # Listes chainées
 Pour ce projet, vous pouvez tout a fait choisir d'utiliser des tableaux. Cependant, les listes chainées offrent des avantages intéressants. Si vous n'etes pas trop a la traine dans le cursus, je vous recommande d'au moins vous y essayer.
 
@@ -26,16 +37,7 @@ Si vous n'etes pas a l'aise avec les pointeurs, accrochez-vous.
 ```
 ```
 
-# Gestion des erreurs
-Vous devez verifier que les arguments recus sont bien:
-- des chiffres.
-- plus precisement des int (pas de virgules, et rien en-dehors de int_min et int_max).
-- uniques (pas de repetitions).
 
-ATTENTION, les arguments doivent pouvoir etre traites de la meme facon, peu importe si:
-- ils sont passes sans guillemets (ex.: 2 453 86 9).
-- ils sont passes entre guillemets comme une seule string (ex.: "2 453 86 9").
-- ils sont TOUS passes entre guillemets comme plusieurs string (ex.: "2" "453" "86" "9").
 
 # Algorithme de tri
 ## Algorithme turc
