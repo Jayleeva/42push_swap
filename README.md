@@ -97,6 +97,13 @@ Si vous voulez aller jusqu'a la fin de la chaine, servez-vous du fait que le der
 while (copy->next != NULL)
 	copy = copy->next;
 ```
+## Passer une liste chainee en argument
+Votre liste chainee est un pointeur sur pointeur! En consequence, quand vous declarez des fonctions qui en recoivent, il faut vous inspirer de cette ecriture: ``void your_function(**list)``. Oui, vous avez bien vu, ce n'est pas une faute de frappe: il ya bien DEUX etoiles.
+
+Je n'ai pas encore bien compris le pourquoi du comment, mais:
+- quand vous passez votre liste la premiere fois (soit depuis le main a priori), il faut utiliser l'eperluette. ``your_function(&list)``
+- ensuite, vous pouvez vous en passer. ``your_function(list)``
+
 ## Modifier les listes chainees
 Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont directement modifier nos listes chainees. Puisqu'on travaille avec des pointeurs, pas besoin pour nos fonctions "actions" de retourner quoi que ce soit.
 
@@ -127,7 +134,7 @@ Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont dir
 2. Faire une boucle while qui deplace la copie "curseur" tant que *le chainon suivant* ne pointe pas sur NULL (pour trouver *l'avant-dernier* chainon). ``while (current->next->next != NULL){current = current->next;}``
 3. Stocker le chainon suivant le "curseur" dans une copie (dernier chainon actuellement). ``bottom = current->next;``
 4. Faire pointer cette copie sur celle du sommet, pour qu'elle devienne le premier chainon. ``bottom->next = top_cpy;``
-5. Faire pointer l'avant-dernier chainon sur NULL, pour qu'il devienne dernier. ``current->next = NULL;``
+5. Faire pointer l'avant-dernier chainon sur NULL, pour qu'il devienne le dernier. ``current->next = NULL;``
 6. Deplacer le sommet en lui assignant le nouveau premier chainon. ``*top = bottom;``
 
 # Algorithme de tri
