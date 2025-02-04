@@ -113,7 +113,7 @@ Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont dir
 3. Deplacer le sommet de la pile qui transmet en lui assignant son suivant: ``*giving_top = (*giving_top)->next``
 4. Stocker le sommet actuel de la pile qui recoit un chainon dans une copie. ``receiving_top_cpy = *receiving_top``
 5. Assigner la copie du sommet de la pile qui transmet au sommet de la pile qui recoit. ``*receiving_top = giving_top_cpy``
-6. Faire pointer le nouveau sommet de la pile qui a recu un chainon sur la copie de son ancien sommet. ``*(*receiving_top)->next = receiving_top_cpy``
+6. Faire pointer le nouveau sommet de la pile qui a recu un chainon sur la copie de son ancien sommet. ``(*receiving_top)->next = receiving_top_cpy``
 
 # Algorithme de tri
 ## Algorithme turc
