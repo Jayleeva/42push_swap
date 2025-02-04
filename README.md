@@ -103,6 +103,7 @@ Votre liste chainee est un pointeur sur pointeur! En consequence, quand vous dec
 Je n'ai pas encore bien compris le pourquoi du comment, mais:
 - quand vous passez votre liste la premiere fois (soit depuis le main a priori), il faut utiliser l'eperluette. ``your_function(&list)``
 - ensuite, vous pouvez vous en passer. ``your_function(list)``
+- dans vos fonctions, quand vous voulez acceder a votre liste directement, il faut le signifier avec un asterisque; les copies que vous voudrez en faire devront egalement etre des pointeurs (voir "naviguer dans une liste chainee" ci-dessus).
 
 ## Modifier les listes chainees
 Les differentes actions autorisees (swap, push, rotate, reverse rotate) vont directement modifier nos listes chainees. Puisqu'on travaille avec des pointeurs, pas besoin pour nos fonctions "actions" de retourner quoi que ce soit.
