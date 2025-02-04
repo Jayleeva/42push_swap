@@ -26,5 +26,16 @@ Si vous n'etes pas a l'aise avec les pointeurs, accrochez-vous.
 ```
 ```
 
+# Gestion des erreurs
+Vous devez verifier que les arguments recus sont bien:
+- des chiffres.
+- plus precisement des int (pas de virgules, et rien en-dehors de int_min et int_max).
+- uniques (pas de repetitions).
+
+ATTENTION, les arguments doivent pouvoir etre traites de la meme facon, peu importe si:
+- ils sont passes sans guillemets (ex.: 2 453 86 9).
+- ils sont passes entre guillemets comme une seule string (ex.: "2 453 86 9").
+- ils sont TOUS passes entre guillemets comme plusieurs string (ex.: "2" "453" "86" "9").
+
 # Algorithme de tri
 ## Algorithme turc
