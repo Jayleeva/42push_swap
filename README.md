@@ -70,11 +70,33 @@ Mais ce n'est pas tout... On peut cumuler les fleches! Par exemple, si je veux a
 Bon, c'est bien beau, mais si ma chaine fait plus de 20, 500, 1000000000 chainons, et que je veux acceder au 42eme, je ne vais quand meme pas ecrire plus de 40 fleches, non? Non.
 
 ### Naviguer dans une liste chainee
+*ATTENTION: comme on utilise des pointeurs, il faut faire bien attention a ce qu'on modifie! Si vous recevez un pointeur, vous recevez en realite une adresse memoire, sur laquelle s'effectueront tous les changements que vous appliquez au pointeur. C'est justement ce qu'on veut dans certains cas, et c'est precisement ce qu'on ne veut pas dans d'autres. Prenez l'habitude de conscientiser la nature de ce que vous recevez en arguments!*
 
+Pour passer d'un chainon a l'autre, il vous suffit d'actualiser l'adresse du chainon actuel, en lui assignant celle du suivant:
+```
+your_node_name = your_node_name->next;
+```
+Cependant, si vous le faites directement sur le pointeur, vous perdez le lien avec le chainon precedent (a moins d'utiliser une liste doublement chainee, mais nous n'en traiterons pas ici). Si vous devez acceder a un chainon en particulier sans perdre aucune adresse, faites-en une copie, par exemple:
+```
+your_struct_name_t	*copy;
 
-ATTENTION: comme on utilise des pointeurs, il faut faire bien attention a ce qu'on modifie! Si vous recevez un pointeur, vous recevez en realite une adresse memoire, sur laquelle s'effectueront tous les changements que vous appliquez au pointeur. C'est justement ce qu'on veut dans certains cas, et c'est precisement ce qu'on ne veut pas dans d'autres. Prenez l'habitude de conscientiser la nature de ce que vous recevez en arguments!
+copy = *your_list;
+```
+Puis, vous pouvez utiliser des boucles while pour avancer jusqu'au chainon desire. 
 
-
+Si vous connaissez sa place exacte en int (le 3eme : 2):
+```
+while (place > 0)
+{
+	copy = copy->next;
+	place --;
+}
+```
+Si vous voulez aller jusqu'a la fin de la chaine, servez-vous du fait que le dernier chainon est identifiable parce qu'il pointe sur NULL:
+```
+while (copy->next != NULL)
+	copy = copy->next;
+```
 
 # Algorithme de tri
 ## Algorithme turc
