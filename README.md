@@ -84,7 +84,7 @@ copy = *your_list;
 ```
 Puis, vous pouvez utiliser des boucles while pour avancer jusqu'au chainon desire. 
 
-Si vous connaissez sa place exacte en int (le 3eme : 2):
+Si vous connaissez sa place exacte en int (par ex., le 3eme chainon: sa place = 2):
 ```
 while (place > 0)
 {
