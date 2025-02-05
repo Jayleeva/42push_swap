@@ -53,7 +53,7 @@ typedef struct your_struct_name your_struct_name_t
 	struct	your_struct_name	*next;
 };
 ```
-La reprise du nom de la structure suivie d'un _t semble être une convention de nommage qui permet de distinguer le "modèle" de la structure et son instance concrète (du moins c'est ainsi que je le comprends).
+La reprise du nom de la structure suivie d'un ``_t`` semble être une convention de nommage qui permet de distinguer le "modèle" de la structure et son instance concrète (du moins c'est ainsi que je le comprends).
 
 ``typedef`` permet de definir un nouveau type de variable.
 
