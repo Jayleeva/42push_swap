@@ -1,27 +1,23 @@
 #include "push_swap.h"
+#include "check_errors.c"
+#include "actions.c"
+#include "write_actions.c"
+#include "display.c"
+#include "sort.c"
 
-void	display_list(node_t *a, node_t *b)
+int	get_stack_size(node_t **list)
 {
-	node_t	*current_a;
-	node_t	*current_b;
-
-	current_a = a;
-	current_b = b;
-	printf("\n");
-	while (current_a->next != NULL && current_b->next != NULL)
+	node_t	*current;
+	int		i;
+	i = 1;
+	current = *list;
+	while (current->next != NULL)
 	{
-		printf(" %d\t\t\t %d\n", current_a->data, current_b->data);
-		current_a = current_a->next;
-		current_b = current_b->next;
+		current = current->next;
+		i ++;
 	}
-	printf(" %d\t\t\t %d\n", current_a->data, current_b->data);
-	printf("---\t\t\t---\n a\t\t\t b\n");
+	return (i);
 }
-
-/*t_list	sort(t_list **a, t_list **b)
-{
-	
-}*/
 
 node_t	*make_list(int argc, char **argv)
 {
@@ -42,7 +38,8 @@ node_t	*make_list(int argc, char **argv)
 	{
 		while (current->next != NULL)
 		{
-			current->precedent = current;
+			//current->precedent = current;
+			current->cost = 0;
 			current = current->next;
 		}
 		current->next = (node_t *)malloc(sizeof(node_t));
@@ -55,84 +52,35 @@ node_t	*make_list(int argc, char **argv)
 	return (head);
 }
 
-int	get_nelem(char *str) 
-{
-	int	n;
-	int	temp;
-	int	nelem;
-
-	n = atoi(str);
-	temp = n;
-	nelem = 0;
-	if (n < 0)
-	{
-		if (n == -2147483648)
-			temp ++; 
-		temp = temp * -1;
-		nelem ++;
-	}
-	while (temp > 0)
-	{
-		temp = temp / 10;
-		nelem ++;
-	}
-	return (nelem);
-}
-
-char	**cpy_tab(int nelem, char **a)
-{
-	int		i;
-	char	**b;
-
-	b = (char **)malloc((nelem + 1) * sizeof(char*));
-	if (b == NULL)
-		return (NULL);
-	i = 0;
-	while (i < nelem)
-	{
-		b[i] = (char *)malloc((get_nelem(a[i]) +1) * sizeof(char));
-		if (b[i] == NULL)
-			return(free(b), NULL);
-		i ++;
-	}
-	b[i] = 0;
-	/*i = 0;
-	while (b[i])
-	{
-		b[i] = " ";
-		i ++;
-	}*/
-	return (b);
-}
-
 int	main(int argc, char **argv)
 {
-	char	**b;
 	node_t	*list_a;
 	node_t	*list_b;
+	char	**tab;
 
-	char	*action;
+	(void)argv;
+	argc = 7;
+	tab = (char **)malloc((argc + 1) *sizeof(char*));
+	tab[1] = "2";
+	tab[2] = "1";
+	tab[3] = "3";
+	tab[4] = "6";
+	tab[5] = "5";
+	tab[6] = "8";
+	/*tab[1] = "8";
+	tab[2] = "5";
+	tab[3] = "6";
+	tab[4] = "3";
+	tab[5] = "1";
+	tab[6] = "2";*/
 
-	//action = ["sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"];
+	//12 7 22 3 5 6 71 1
 	if (argc > 1)
 	{
-		action = (char *)malloc((3 +1) * sizeof(char));
-		if (action == NULL)
+		//ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS, CHANGER LES STRING EN INT (attention aux espaces + utiliser atoi)
+		if (check_error(argc, tab) == 1)
 			return (0);
-		if (check_error(argc, argv) == 1)
-			return (0);
-		b = cpy_tab(argc, argv);
-		if (b == NULL)
-			return (0);
-		list_a = make_list(argc, argv);
-		list_b = make_list(argc, b);
-		display_list(list_a, list_b);
-		ra(list_a);
-		display_list(list_a, list_b);
-		//sort(list_a, list_b);
-		/*action = "sa";
-		if (strcmp(action, "sa") == 0)
-			argv = sa(argv);
-		display_action(argc, argv, b, action);*/
+		list_a = make_list(argc, tab);
+		sort(&list_a, &list_b);
 	}
 }

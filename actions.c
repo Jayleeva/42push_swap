@@ -1,103 +1,109 @@
 #include "push_swap.h"
 
-void	sa(node_t *list_a)
+void	s(node_t **head, char stack)
 {
-	int	temp;
-	//ne fait rien si moins de 2 elements
-	temp = list_a->data;
-	list_a->data = list_a->next->data;
-	list_a->next->data = temp;
+	node_t		*top;
+	node_t		*second;
+
+	top = *head;
+	second = (*head)->next;
+	//temp->data = (*head)->next->data;
+	top->next = (*head)->next->next;
+	second->next = top;
+	*head = second;
+	if (stack != 'c')
+		write_swap(stack);
 }
 
-void	sb(node_t *list_b)
+void	ss(node_t **head_a, node_t **head_b)
 {
-	int	temp;
-	//ne fait rien si moins de 2 elements
-	temp = list_b->data;
-	list_b->data = list_b->next->data;
-	list_b->next->data = temp;
+	s(head_a, 'c');
+	s(head_b, 'c');
+	write(1, "ss\n", 3);
 }
 
-void	ss(node_t *list_a, node_t *list_b)
+void	pa(node_t **head_a, node_t **head_b)
 {
-	sa(list_a);
-	sb(list_b);
-}
+	node_t	*top_a;
+	node_t	*top_b;
+	//node_t	*temp;
 
-void	pa(node_t *list_a, node_t *list_b)
-{
-	//si b est vide, ne rien faire
-	node_t	*top;
-
-	top =(node_t *)malloc(sizeof(node_t));
-	if (top == NULL)
+	top_b = *head_b;
+	if (top_b == NULL)
 		return;
-	top->data = list_b->data;
-	list_a->precedent = top;
+
+	//temp = *head_b;
+	//*head_b = top_b->next;
+	*head_b = (*head_b)->next;
+	top_a = *head_a;
+	//*head_a = temp;
+	*head_a = top_b;
+	(*head_a)->next = top_a;
+	write(1, "pa\n", 3);
 }
 
-void	pb(node_t *list_a, node_t *list_b)
+void	pb(node_t **head_a, node_t **head_b)
 {
-	//si a est vide, ne rien faire
-	node_t	*top;
+	node_t	*top_a;
+	node_t	*top_b;
+	node_t	*temp;
 
-	top =(node_t *)malloc(sizeof(node_t));
-	if (top == NULL)
+	top_a = *head_a;
+	if (top_a == NULL)
 		return;
-	top->data = list_a->data;
-	list_b->precedent = top;
+	temp = *head_a;
+	*head_a = top_a->next;
+	top_b = *head_b;
+	*head_b = temp;
+	(*head_b)->next = top_b;
+	write(1, "pb\n", 3);
 }
 
-void	ra(node_t *list_a)
+void	rotate(node_t **head, char stack)
 {
-	int		bottom;
-	int		temp;
+	node_t		*top;
+	node_t		*current;
 
-	bottom = list_a->data;
-	while (list_a->next != NULL)
-	{
-		temp = list_a->data;
-		list_a->data = list_a->next->data;
-		list_a->next->data = temp;
-		list_a = list_a->next;
-	}
-	list_a->data = bottom;
+	top = *head;
+	current = *head;
+	while (current->next != NULL)
+		current = current->next;
+	//*head = top->next;
+	*head = (*head)->next;
+	current->next = top;
+	top->next = NULL;
+	if (stack != 'c')
+		write_rotate(stack);
 }
 
-void	rb(node_t *list_b)
-{
-	int		bottom;
-	int		temp;
-
-	bottom = list_b->data;
-	while (list_b->next != NULL)
-	{
-		temp = list_b->data;
-		list_b->data = list_b->next->data;
-		list_b->next->data = temp;
-		list_b = list_b->next;
-	}
-	list_b->data = bottom;
+void	rr(node_t **head_a, node_t **head_b)
+{	
+	rotate(head_a, 'c');
+	rotate(head_b, 'c');
+	write(1, "rr\n", 3);
 }
 
-void	rr(node_t *list_a, node_t *list_b)
+void	rev_rotate(node_t **head, char stack)
 {
-	ra(list_a);
-	rb(list_b);
+	node_t		*top;
+	node_t		*bottom;
+	node_t		*current;
+
+	top = *head;
+	current = *head;
+	while (current->next->next != NULL)
+		current = current->next;
+	bottom = current->next;
+	bottom->next = top;
+	current->next = NULL;
+	*head = bottom;
+	if (stack != 'c')
+		write_rev_rotate(stack);
 }
 
-void	rra(node_t *list_a)
+void	rrr(node_t **head_a, node_t **head_b)
 {
-	int		bottom;
-	int		temp;
-
-	bottom = list_a->data;
-	while (list_a->next != NULL)
-	{
-		temp = list_a->data;
-		list_a->data = list_a->next->data;
-		list_a->next->data = temp;
-		list_a = list_a->next;
-	}
-	list_a->data = bottom;
+	rev_rotate(head_a, 'c');
+	rev_rotate(head_b, 'c');
+	write(1, "rrr\n", 4);
 }

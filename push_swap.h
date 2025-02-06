@@ -4,18 +4,35 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
 
 typedef struct node
 {
 	int		data;
 	struct	node *next;
-	struct 	node *precedent;
-	
-	/*t_list	*next;
-	t_list	*precedent;*/
+	int		cost;
 }			node_t;
 
-int	check_error(int nelem, char **tab);
-void	ra(node_t *list_a);
+int		check_error(int nelem, char **tab);
+void	display_list(node_t **a, node_t **b);
+int		get_stack_size(node_t **list);
+void	s(node_t **head, char stack);
+void	sa(node_t **head_a);
+void	sb(node_t **head_b);
+void	ss(node_t **head_a,node_t **head_b);
+void	pa(node_t **head_a,node_t **head_b);
+void	pb(node_t **head_a,node_t **head_b);
+void	rotate(node_t **head, char stack);
+void	ra(node_t **head_a);
+void	rb(node_t **head_a);
+void	rr(node_t **head_a, node_t **head_b);
+void	rev_rotate(node_t **head, char stack);
+void	rra(node_t **head_a);
+void	rrb(node_t **head_a);
+void	rrr(node_t **head_a, node_t **head_b);
+void	sort(node_t **a, node_t **b);
+void    write_swap(char stack);
+void    write_rotate(char stack);
+void    write_rev_rotate(char stack);
 
 #endif
