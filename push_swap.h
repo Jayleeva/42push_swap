@@ -10,6 +10,8 @@ typedef struct node
 {
 	int		data;
 	struct	node *next;
+	int		cost_to_the_top;
+	int		cost_to_push;
 	int		cost;
 }			node_t;
 

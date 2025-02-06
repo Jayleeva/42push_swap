@@ -61,7 +61,6 @@ void    sort_3(node_t **head, char stack)
     }
 }
 
-
 int find_max(node_t **head, int size)
 {
     node_t  *current;
@@ -109,7 +108,6 @@ int find_min(node_t **head, int size)
     }
     return (j);
 }
-
 
 //void    push_min(node_t **a, node_t **b, int min)
 void    rotate_to_top_and_push(node_t **a, node_t **b, int elem)
@@ -252,14 +250,45 @@ void    push_cheapest(node_t **a, node_t **b)
     pb(a, b);
 }
 
-int set_cost(node_t *top_a, node_t **b, int size, int elem)
+void    set_cost_to_push(node_t *top_a, node_t **b)
 {
-    if (elem < 2)
-        return (elem);
-    else if (elem > size / 2)
-        return ();
-    else if (elem <= size / 2)
-        return ();
+    int     ref;
+    int     i;
+    int     size_b;
+    node_t  *current;
+
+    current = *b;
+    ref = top_a->data;
+    size_b = get_stack_size(b);
+    if (is_greater_or_smaller_than_all_b(b, ref) == 1)
+    {
+        i = find_max(b, size_b);
+        if (i <= size_b / 2)
+            top_a->cost_to_push = i;
+        else if (i > size_b / 2)
+            top_a->cost_to_push = size_b - i;
+    }
+    else
+    {
+        top_a->cost_to_push = 0;
+        while (current->next != NULL && (!(ref > current->data) && !(ref < current->next->data)))
+        {
+            top_a->cost_to_push ++;
+            //rotate(b, 'b');
+            current = current->next;
+        }
+    }
+}
+
+int set_cost(node_t *top_a, node_t **b, int size_a, int i)
+{
+    if (i <= size_a / 2)
+        top_a->cost_to_the_top = i;
+    else if (i > size_a / 2)
+        top_a->cost_to_the_top = size_a - i;
+    set_cost_to_push(top_a, b);
+    top_a->cost = top_a->cost_to_the_top + top_a->cost_to_push;
+    return (top_a->cost);
 }
 
 void    more_than_five(node_t **a, node_t **b, int size_a)
@@ -280,13 +309,13 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
         cheapest = 0;
         i = 0;
         size_a = get_stack_size(a);
-        while (size_a > 0)
+        while (size_a > 1)
         {
             if (cheapest_cost == 0)
                 break;
             if (set_cost(top_a, b, size_a, i) < cheapest_cost)
             {
-                cheapest_cost = set_cost(top_a, b, size_a, i);
+                cheapest_cost = top_a->cost;
                 cheapest = i;
             }
             top_a = top_a->next;
@@ -296,7 +325,7 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
         rotate_to_top_and_push(a, b, cheapest);
         nelem --;
     }
-    while ((*b)->data < (*b)->next->data) // if suffit?
+    if ((*b)->data < (*b)->next->data)
         rotate(b, 'b');
     finish(a, b, nelem);
 }

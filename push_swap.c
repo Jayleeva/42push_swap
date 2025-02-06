@@ -58,6 +58,7 @@ int	main(int argc, char **argv)
 	node_t	*list_b;
 	char	**tab;
 
+	//tab = argv;
 	(void)argv;
 	argc = 7;
 	tab = (char **)malloc((argc + 1) *sizeof(char*));
@@ -67,12 +68,6 @@ int	main(int argc, char **argv)
 	tab[4] = "6";
 	tab[5] = "5";
 	tab[6] = "8";
-	/*tab[1] = "8";
-	tab[2] = "5";
-	tab[3] = "6";
-	tab[4] = "3";
-	tab[5] = "1";
-	tab[6] = "2";*/
 
 	//12 7 22 3 5 6 71 1
 	if (argc > 1)
@@ -81,6 +76,7 @@ int	main(int argc, char **argv)
 		if (check_error(argc, tab) == 1)
 			return (0);
 		list_a = make_list(argc, tab);
+		list_b = NULL;
 		sort(&list_a, &list_b);
 	}
 }
