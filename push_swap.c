@@ -60,16 +60,20 @@ int	main(int argc, char **argv)
 
 	//tab = argv;
 	(void)argv;
-	argc = 7;
+	argc = 10;
 	tab = (char **)malloc((argc + 1) *sizeof(char*));
-	tab[1] = "2";
-	tab[2] = "1";
-	tab[3] = "3";
-	tab[4] = "6";
-	tab[5] = "5";
-	tab[6] = "8";
+	tab[1] = "5";
+	tab[2] = "2";
+	tab[3] = "7";
+	tab[4] = "1";
+	tab[5] = "6";
+	tab[6] = "3";
+	tab[7] = "9";
+	tab[8] = "4";
+	tab[9] = "8";
 
-	//12 7 22 3 5 6 71 1
+	//4 12 22 3 5 6 71 1
+	//2 1 3 6 5 8
 	if (argc > 1)
 	{
 		//ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS, CHANGER LES STRING EN INT (attention aux espaces + utiliser atoi)
