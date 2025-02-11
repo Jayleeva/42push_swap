@@ -387,7 +387,7 @@ void    set_cost_to_push(node_t *current_a, node_t **b)
     }
     else
     {
-        if (!(ref < bottom_b->data) && !(ref > current_b->data))
+        if ((ref < bottom_b->data) && (ref > current_b->data))
         {
             current_a->cost_to_push = 0;
             return;
