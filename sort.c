@@ -193,9 +193,9 @@ void    move_together(node_t **a, node_t **b, int elem_a, int elem_b)
 
     size_a = get_stack_size(a);
     size_b = get_stack_size(b);
-    if (elem_a == 1 && elem_b == 1)
-        ss(a, b);
-    else if (elem_a <= size_a / 2 && elem_b <= size_b  / 2)
+    //if (elem_a == 1 && elem_b == 1)
+    //    ss(a, b);
+    if (elem_a <= size_a / 2 && elem_b <= size_b  / 2)
     {
         while (elem_a && elem_b)
         {
@@ -233,14 +233,14 @@ void    put_to_top_and_push(node_t **a, node_t **b, int elem_a, int elem_b)
     move_together(a, b, elem_a, elem_b);
     if (elem_a != elem_b)
     {
-        if (elem_a == 1 || elem_b == 1)
+        /*if (elem_a == 1 || elem_b == 1)
         {
             if (elem_a == 1)
                 s(a, 'a');
             else if (elem_b == 1)
                 s(b, 'b');
-        }
-        else if (elem_a <= size_a / 2 || elem_b <= size_b)
+        }*/
+        if (elem_a <= size_a / 2 || elem_b <= size_b)
             rotate_to_top(a, b, elem_a, elem_b);
         else if (elem_a > size_a / 2 || elem_b > size_b)
             rev_rotate_to_top(a, b, elem_a, elem_b);
@@ -359,32 +359,50 @@ void    push_cheapest(node_t **a, node_t **b)
     pb(a, b);
 }
 
-void    set_cost_to_push(node_t *top_a, node_t **b)
+void    set_cost_to_push(node_t *current_a, node_t **b)
 {
     int     ref;
     int     i;
     int     size_b;
-    node_t  *current;
+    node_t  *current_b;
+    node_t  *bottom_b;
 
-    current = *b;
-    ref = top_a->data;
+    ref = current_a->data;
     size_b = get_stack_size(b);
+    i = size_b;
+    current_b = *b;
+    bottom_b = *b;
+    while (i > 1)
+    {
+        bottom_b = bottom_b->next;
+        i --;
+    }
     if (is_greater_or_smaller_than_all_b(b, ref) == 1)
     {
         i = find_max(b, size_b);
         if (i <= size_b / 2)
-            top_a->cost_to_push = i;
+            current_a->cost_to_push = i;
         else if (i > size_b / 2)
-            top_a->cost_to_push = size_b - i;
+            current_a->cost_to_push = size_b - i;
     }
     else
     {
-        top_a->cost_to_push = 0;
-        while (current->next != NULL && (!(ref > current->data) && !(ref < current->next->data)))
+        if (!(ref < bottom_b->data) && !(ref > current_b->data))
         {
-            top_a->cost_to_push ++;
-            current = current->next;
+            current_a->cost_to_push = 0;
+            return;
         }
+        i = 1;
+        while (!(ref < current_b->data) && !(ref > current_b->next->data)) // MARCHE PAS!!
+        {
+            i ++;
+            current_b = current_b->next;
+        }
+        current_a->cost_to_push = i;
+        /*if (i > size_b / 2)
+            current_a->cost_to_push = size_b - i;
+        else
+            current_a->cost_to_push = i;*/
     }
 }
 
@@ -462,6 +480,8 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
         cheapest = find_cheapest(a, b, nelem);
         target = find_target(a, b, cheapest);
         put_to_top_and_push(a, b, cheapest, target);
+        printf("cheapest = %d, target = %d\n", cheapest, target);
+        display_list(a, b);
         nelem --;
     }
     //sort_3(a, 'a');
