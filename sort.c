@@ -218,25 +218,28 @@ void    put_to_top_and_push(node_t **a, node_t **b, int elem_a, int elem_b)
 	else if ((elem_a <= size_a / 2 && elem_b <= size_a / 2) || (elem_a > size_a / 2 && elem_b > size_a / 2))
 	{
 		if (elem_a > 0 && elem_b > 0)
+		{
+			printf("dans le meme sens\n");
 			move_together(a, b, elem_a, elem_b);
-	else
-	{
-		//printf("pas dans le meme sens");
-		if (elem_a <= size_a / 2)
-			rotate_to_top(a, 'a', elem_a);
-		else if (elem_a > size_a / 2)
-			rev_rotate_to_top(a, 'a', size_a - elem_a);
-		if (elem_b <= size_b / 2)
-			rotate_to_top(b, 'b', elem_b);
-		else if (elem_b > size_b / 2)
-			rev_rotate_to_top(b, 'b', size_b - elem_b);
+			pb(a, b);
+			return;
+		}
 	}
+	printf("pas dans le meme sens\n");
+	if (elem_a <= size_a / 2)
+		rotate_to_top(a, 'a', elem_a);
+	else if (elem_a > size_a / 2)
+		rev_rotate_to_top(a, 'a', size_a - elem_a);
+	if (elem_b <= size_b / 2)
+		rotate_to_top(b, 'b', elem_b);
+	else if (elem_b > size_b / 2)
+		rev_rotate_to_top(b, 'b', size_b - elem_b);
 	pb(a, b);
 }
 
 void    finish(node_t **a, node_t **b, int size)
 {
-	int     i;
+	int	i;
 
 	i = size;
 	while (i > 0)
@@ -470,7 +473,7 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 	//sort_3(a, 'a');
 	//if ((*b)->data < (*b)->next->data)
 	//    rotate(b, 'b');
-	finish(a, b, total);
+	//finish(a, b, total);
 }
 
 void	sort(node_t **a, node_t **b)
