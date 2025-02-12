@@ -137,13 +137,14 @@ int find_min(node_t **head, int size)
     return (j);
 }
 
-void    rev_rotate_to_top(node_t **a, node_t **b, int elem_a, int elem_b)
+/*void    rev_rotate_to_top(node_t **head, char stack, int elem_a, int elem_b)
 {
+
     if (elem_a > elem_b)
     {
         while (elem_a - elem_b)
         {
-            rev_rotate(a, 'a');
+            rev_rotate(head, stack);
             elem_a --;
         }
     }
@@ -151,18 +152,18 @@ void    rev_rotate_to_top(node_t **a, node_t **b, int elem_a, int elem_b)
     {
         while (elem_b - elem_a)
         {
-            rotate(b, 'b');
+            rev_rotate(b, 'b');
             elem_b --;
         }
     }
 }
-void    rotate_to_top(node_t **a, node_t **b, int elem_a, int elem_b)
+void    rotate_to_top(node_t **head, char stack, int elem_a, int elem_b)
 {
     if (elem_a > elem_b)
     {
         while (elem_a - elem_b)
         {
-            rotate(a, 'a');
+            rotate(head, stack);
             elem_a --;
         }
     }
@@ -170,9 +171,27 @@ void    rotate_to_top(node_t **a, node_t **b, int elem_a, int elem_b)
     {
         while (elem_b - elem_a)
         {
-            rotate(b, 'b');
+            rotate(head, stack);
             elem_b --;
         }
+    }
+}*/
+
+void    rev_rotate_to_top(node_t **head, char stack, int n)
+{
+    while (n > 0)
+    {
+        rev_rotate(head, stack);
+        n --;
+    }
+}
+
+void    rotate_to_top(node_t **head, char stack, int n)
+{
+    while (n > 0)
+    {
+        rotate(head, stack);
+        n --;
     }
 }
 
@@ -213,9 +232,10 @@ void    move_together(node_t **a, node_t **b, int elem_a, int elem_b)
             elem_b ++;
         }
     }
+    //(*a)->cost_to_the_top = elem_a;
+    //(*a)->cost_to_push = elem_b;
 }
 
-//void    push_min(node_t **a, node_t **b, int min)
 void    put_to_top_and_push(node_t **a, node_t **b, int elem_a, int elem_b)
 {
     int size_a;
@@ -224,27 +244,21 @@ void    put_to_top_and_push(node_t **a, node_t **b, int elem_a, int elem_b)
 
     size_a = get_stack_size(a);
     size_b = get_stack_size(b);
-    //printf("MIN = %d\n", min);
     if (elem_a == 0 && elem_b == 0)
     {
         pb(a, b);
         return;
     }
-    move_together(a, b, elem_a, elem_b);
-    if (elem_a != elem_b)
-    {
-        /*if (elem_a == 1 || elem_b == 1)
-        {
-            if (elem_a == 1)
-                s(a, 'a');
-            else if (elem_b == 1)
-                s(b, 'b');
-        }*/
-        if (elem_a <= size_a / 2 || elem_b <= size_b)
-            rotate_to_top(a, b, elem_a, elem_b);
-        else if (elem_a > size_a / 2 || elem_b > size_b)
-            rev_rotate_to_top(a, b, elem_a, elem_b);
-    }
+    //move_together(a, b, elem_a, elem_b);
+    //if (elem_a != elem_b)
+    if (elem_a <= size_a / 2)
+        rotate_to_top(a, 'a', elem_a);
+    else if (elem_a > size_a / 2)
+        rev_rotate_to_top(a, 'a', size_a - elem_a);
+    if (elem_b <= size_b / 2)
+        rotate_to_top(b, 'b', elem_b);
+    else if (elem_b > size_b / 2)
+        rev_rotate_to_top(b, 'b', size_b - elem_b);
     pb(a, b);
 }
 
@@ -305,7 +319,6 @@ int is_greater_or_smaller_than_all_b(node_t **b, int ref)
             break;
         size_b --;
     }
-    //printf(" *1 size_b = %d\nref = %d\n", size_b, ref);
     if (size_b == 0)
         return (1);
     current_b = *b;
@@ -318,45 +331,9 @@ int is_greater_or_smaller_than_all_b(node_t **b, int ref)
             break;
         size_b --;
     }
-    //printf(" *1 size_b = %d\nref = %d\n", size_b, ref);
     if (size_b == 0)
         return (1);
     return (0);
-}
-
-void    push_cheapest(node_t **a, node_t **b)
-{
-    int     size_b;
-    int     ref;
-    int     max;
-    node_t  *current;
-
-    size_b = get_stack_size(b);
-    current = *a;
-    ref = current->data;
-    //printf(" * 0 ref = %d\n", ref);
-    if (is_greater_or_smaller_than_all_b(b, ref) == 1)  // si plus petit ou plus grand que TOUS (hors range) : rotate B autant de fois que nécessaire pour que le plus grand soit en haut de B; puis push.
-    {
-        //write(1, "z\n", 2);
-        max = find_max(b, size_b);
-       // printf("max = %d\n", max);
-        while (max > 0)
-        {
-            rotate(b, 'b');
-            max --;
-        }
-    }
-    else // sinon: compter jusqu'à précédent plus grand et next plus petit; rotate B autant de fois que nécessaire pour que le next soit au sommet de B puis push.
-    {
-        current = *b;
-        while (!(ref > current->data) && !(ref < current->next->data))
-        {
-            //write(1, "x\n", 2);
-            rotate(b, 'b');
-            current = *b;
-        }
-    }
-    pb(a, b);
 }
 
 void    set_cost_to_push(node_t *current_a, node_t **b)
@@ -380,6 +357,7 @@ void    set_cost_to_push(node_t *current_a, node_t **b)
     if (is_greater_or_smaller_than_all_b(b, ref) == 1)
     {
         i = find_max(b, size_b);
+        current_a->target = i;
         if (i <= size_b / 2)
             current_a->cost_to_push = i;
         else if (i > size_b / 2)
@@ -390,31 +368,83 @@ void    set_cost_to_push(node_t *current_a, node_t **b)
         if ((ref < bottom_b->data) && (ref > current_b->data))
         {
             current_a->cost_to_push = 0;
+            current_a->target = 0;
             return;
         }
         i = 1;
-        while (!(ref < current_b->data) && !(ref > current_b->next->data)) // MARCHE PAS!!
+        while (!(ref < current_b->data && ref > current_b->next->data))
         {
             i ++;
             current_b = current_b->next;
         }
-        current_a->cost_to_push = i;
-        /*if (i > size_b / 2)
+        current_a->target = i;
+        if (i > size_b / 2)
             current_a->cost_to_push = size_b - i;
         else
-            current_a->cost_to_push = i;*/
+            current_a->cost_to_push = i;
     }
+
 }
 
-int set_cost(node_t *top_a, node_t **b, int size_a, int i)
+int set_cost(node_t *current_a, node_t **b, int size_a, int i)
 {
+    int size_b;
+    //int j;
+    int k;
+
+    size_b = get_stack_size(b);
     if (i <= size_a / 2)
-        top_a->cost_to_the_top = i;
+        current_a->cost_to_top = i;
     else if (i > size_a / 2)
-        top_a->cost_to_the_top = size_a - i;
-    set_cost_to_push(top_a, b);
-    top_a->cost = top_a->cost_to_the_top + top_a->cost_to_push;
-    return (top_a->cost);
+        current_a->cost_to_top = size_a - i;
+    set_cost_to_push(current_a, b);
+    //j = current_a->target;
+    k = 0;
+    /*if (i > 0 && j > 0)
+    {
+        current_a->cost_to_top = 0;
+        current_a->cost_to_push = 0;
+        if (i <= size_a / 2 && j <= size_a / 2)
+        {
+            while (i && j)
+            {
+                i --;
+                j --;
+                k ++;
+            }
+            if (i > 0)
+            {
+                current_a->cost_to_top ++;
+                i --;
+            }
+            else if (j > 0)
+            {
+                current_a->cost_to_push ++;
+                j --;
+            }
+        }
+        else if (i > size_a / 2 && j > size_a / 2)
+        {
+            while (size_a - i && size_b - j)
+            {
+                i ++;
+                j ++;
+                k ++;
+            }
+            if (size_a -i > 0)
+            {
+                current_a->cost_to_top ++;
+                i ++;
+            }
+            else if (size_b - j > 0)
+            {
+                current_a->cost_to_push ++;
+                j ++;
+            }
+        }
+    }*/
+    current_a->cost = k + current_a->cost_to_top + current_a->cost_to_push;    
+    return (current_a->cost);
 }
 
 int find_target(node_t **a, node_t **b, int cheapest)
@@ -430,7 +460,7 @@ int find_target(node_t **a, node_t **b, int cheapest)
         top_a = top_a->next;
         i ++;
     }
-    target = top_a->cost_to_push;
+    target = top_a->target;
     return (target);
 }
 
@@ -475,19 +505,19 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
     pb(a, b);
     pb(a, b);
     nelem = size_a -2;
-    while (nelem > 0)
+    while (nelem > 3)
     {
         cheapest = find_cheapest(a, b, nelem);
         target = find_target(a, b, cheapest);
-        put_to_top_and_push(a, b, cheapest, target);
         printf("cheapest = %d, target = %d\n", cheapest, target);
+        put_to_top_and_push(a, b, cheapest, target);
         display_list(a, b);
         nelem --;
     }
-    //sort_3(a, 'a');
+    sort_3(a, 'a');
     //if ((*b)->data < (*b)->next->data)
     //    rotate(b, 'b');
-    finish(a, b, total);
+    //finish(a, b, total);
 }
 
 void	sort(node_t **a, node_t **b)
