@@ -167,27 +167,37 @@ void    swap_to_top(node_t **a, node_t **b, int elem_a, int elem_b)
 
 void    move_together(node_t **a, node_t **b, int elem_a, int elem_b)
 {
+	int	min;
 	int size_a;
 	int size_b;
+	node_t	*stack;
 
 	size_a = get_stack_size(a);
 	size_b = get_stack_size(b);
+	if (elem_a <= elem_b)
+	{
+		stack = *a;
+		min = elem_a;
+	}
+	else if (elem_b < elem_a)
+	{	
+		stack = *b;
+		min = elem_b;
+	}
 	if (elem_a <= size_a / 2 && elem_b <= size_b  / 2)
 	{
-		while (elem_a && elem_b)
+		while (min)
 		{
 			rr(a, b);
-			elem_a --;
-			elem_b --;
+			min --;
 		}
 	}
 	else if (elem_a > size_a / 2 && elem_b > size_b / 2)
 	{
-		while (get_stack_size(a) - elem_a && get_stack_size(b) - elem_b)
+		while (get_stack_size(&stack) - min)
 		{
 			rrr(a, b);
-			elem_a ++;
-			elem_b ++;
+			min ++;
 		}
 	}
 }
@@ -205,16 +215,22 @@ void    put_to_top_and_push(node_t **a, node_t **b, int elem_a, int elem_b)
 		pb(a, b);
 		return;
 	}
-	//move_together(a, b, elem_a, elem_b);
-	//if (elem_a != elem_b)
-	if (elem_a <= size_a / 2)
-		rotate_to_top(a, 'a', elem_a);
-	else if (elem_a > size_a / 2)
-		rev_rotate_to_top(a, 'a', size_a - elem_a);
-	if (elem_b <= size_b / 2)
-		rotate_to_top(b, 'b', elem_b);
-	else if (elem_b > size_b / 2)
-		rev_rotate_to_top(b, 'b', size_b - elem_b);
+	else if ((elem_a <= size_a / 2 && elem_b <= size_a / 2) || (elem_a > size_a / 2 && elem_b > size_a / 2))
+	{
+		if (elem_a > 0 && elem_b > 0)
+			move_together(a, b, elem_a, elem_b);
+	else
+	{
+		//printf("pas dans le meme sens");
+		if (elem_a <= size_a / 2)
+			rotate_to_top(a, 'a', elem_a);
+		else if (elem_a > size_a / 2)
+			rev_rotate_to_top(a, 'a', size_a - elem_a);
+		if (elem_b <= size_b / 2)
+			rotate_to_top(b, 'b', elem_b);
+		else if (elem_b > size_b / 2)
+			rev_rotate_to_top(b, 'b', size_b - elem_b);
+	}
 	pb(a, b);
 }
 
@@ -244,7 +260,6 @@ void    five_or_less(node_t **a, node_t **b, int size_a)
 	else if (size_a == 4)
 	{
 		min = find_min(a, 4);
-		//push_min(a, b, min);
 		put_to_top_and_push(a, b, min, 0);
 		sort_3(a, 'a');
 		finish(a, b, 4);
@@ -345,7 +360,7 @@ void    set_cost_to_push(node_t *current_a, node_t **b)
 int set_cost(node_t *current_a, node_t **b, int size_a, int i)
 {
 	int size_b;
-	//int j;
+	int j;
 	int k;
 
 	size_b = get_stack_size(b);
@@ -354,51 +369,33 @@ int set_cost(node_t *current_a, node_t **b, int size_a, int i)
 	else if (i > size_a / 2)
 		current_a->cost_to_top = size_a - i;
 	set_cost_to_push(current_a, b);
-	//j = current_a->target;
+	j = current_a->target;
 	k = 0;
-	/*if (i > 0 && j > 0)
+	if (i > 0 && j > 0)
 	{
-		current_a->cost_to_top = 0;
-		current_a->cost_to_push = 0;
-		if (i <= size_a / 2 && j <= size_a / 2)
+		if ((i <= size_a / 2 && j <= size_a / 2) || (i > size_a / 2 && j > size_a / 2))
 		{
-			while (i && j)
+			current_a->cost_to_top = 0;
+			current_a->cost_to_push = 0;
+			if (i == j)
+				k = i;
+			else if (i < j)
 			{
-				i --;
-				j --;
-				k ++;
+				k = i;
+				current_a->cost_to_top = j - i;
 			}
-			if (i > 0)
+			else if (j < i)
 			{
-				current_a->cost_to_top ++;
-				i --;
-			}
-			else if (j > 0)
-			{
-				current_a->cost_to_push ++;
-				j --;
+				k = j;
+				current_a->cost_to_push = i - j;
 			}
 		}
-		else if (i > size_a / 2 && j > size_a / 2)
+		else
 		{
-			while (size_a - i && size_b - j)
-			{
-				i ++;
-				j ++;
-				k ++;
-			}
-			if (size_a -i > 0)
-			{
-				current_a->cost_to_top ++;
-				i ++;
-			}
-			else if (size_b - j > 0)
-			{
-				current_a->cost_to_push ++;
-				j ++;
-			}
+			current_a->cost_to_top = i;
+			current_a->cost_to_push = j;
 		}
-	}*/
+	}
 	current_a->cost = k + current_a->cost_to_top + current_a->cost_to_push;    
 	return (current_a->cost);
 }
@@ -461,7 +458,7 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 	pb(a, b);
 	pb(a, b);
 	nelem = size_a -2;
-	while (nelem > 3)
+	while (nelem > 0)
 	{
 		cheapest = find_cheapest(a, b, nelem);
 		target = find_target(a, b, cheapest);
@@ -470,10 +467,10 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 		display_list(a, b);
 		nelem --;
 	}
-	sort_3(a, 'a');
+	//sort_3(a, 'a');
 	//if ((*b)->data < (*b)->next->data)
 	//    rotate(b, 'b');
-	//finish(a, b, total);
+	finish(a, b, total);
 }
 
 void	sort(node_t **a, node_t **b)
