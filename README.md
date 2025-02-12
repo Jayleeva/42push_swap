@@ -66,14 +66,14 @@ L'exemple contient également quelque chose appelé "*next". Mais pourquoi diabl
 
 Pas clair? Peut-être faut-il nous pencher sur ce à quoi servent les structures.
 
-Basiquement, une structure permet de créer des "sous-variables" à un endroit pour toutes les variables du type de la structure. Ici, au lieu de créer manuellement un int à chaque fois que je crée un nouveau chaînon, je dis que chaque chaînon, déjà crée ou futur, a le potentiel d'avoir un int où stocker sa valeur. Chaque chaînon peut y accéder simplement à l'aide de l'écriture suivante: ``your_node_name->value``. La flèche ``->`` indique "cette variable a une "sous-variable" définie dans sa structure, et je veux y accéder". Ainsi, nous pouvons aussi accéder au "*next", avec la même methode: ``your_node_name->next``. Ce qui nous donne l'adresse du prochain chaînon. Et voilà notre liste chaînée: chaque chaînon peut contenir sa propre valeur, ET l'adresse du chaînon suivant! 
+Basiquement, une structure permet de créer des "sous-variables" à un endroit pour toutes les variables du type de la structure. Ici, au lieu de créer manuellement un int à chaque fois que je crée un nouveau chaînon, je dis que chaque chaînon, déjà créé ou futur, a le potentiel d'avoir un int où stocker sa valeur. Chaque chaînon peut y accéder simplement à l'aide de l'écriture suivante: ``your_node_name->value``. La flèche ``->`` indique "cette variable a une "sous-variable" définie dans sa structure, et je veux y accéder". Ainsi, nous pouvons aussi accéder au "*next", avec la même methode: ``your_node_name->next``. Ce qui nous donne l'adresse du prochain chaînon. Et voilà notre liste chaînée: chaque chaînon peut contenir sa propre valeur, ET l'adresse du chaînon suivant! 
 
 Mais ce n'est pas tout... On peut cumuler les flèches! Par exemple, si je veux accéder à la valeur du 2ème chaînon, je n'ai qu'à écrire: ``your_node_name->next->value``. Et si je veux l'adresse du 3ème? ``your_node_name->next->next``. Etc. 
 
 Bon, c'est bien beau, mais si ma chaîne fait plus de 20, 500, 1000000000 chaînons, et que je veux accéder au 42ème, je ne vais quand même pas écrire plus de 40 flèches, non? Non.
 
 ### Naviguer dans une liste chaînee
-*ATTENTION: comme on utilise des pointeurs, il faut faire bien attention à ce qu'on modifie! Si vous recevez un pointeur, vous recevez en réalité une adresse memoire, sur laquelle s'effectueront tous les changements que vous appliquez au pointeur. C'est justement ce qu'on veut dans certains cas, et c'est précisement ce qu'on ne veut pas dans d'autres. Prenez l'habitude de conscientiser la nature de ce que vous recevez en arguments!*
+*ATTENTION: comme on utilise des pointeurs, il faut faire bien attention à ce qu'on modifie! Si vous recevez un pointeur, vous recevez en réalité une adresse mémoire, sur laquelle s'effectueront tous les changements que vous appliquez au pointeur. C'est justement ce qu'on veut dans certains cas, et c'est précisement ce qu'on ne veut pas dans d'autres. Prenez l'habitude de conscientiser la nature de ce que vous recevez en arguments!*
 
 Pour passer d'un chaînon à l'autre, il vous suffit de mettre à jour l'adresse du chaînon actuel, en lui assignant celle du suivant:
 ```
