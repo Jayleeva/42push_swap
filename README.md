@@ -2,7 +2,7 @@
 Projet du 3ème cercle du cursus 42
 
 # Consignes:
-**Créer un programme qui recoit des int en arguments, les stock dans une stack A, et les trie par ordre croissant de facon optimisée à l'aide d'une stack B vide et avec un pannel d'actions limité.**
+**Créer un programme qui reçoit des int en arguments, les stock dans une stack A, et les trie par ordre croissant de facon optimisée à l'aide d'une stack B vide et avec un pannel d'actions limité.**
 ### Les actions possibles
 - swap : échanger les deux premiers int d'une stack (si A: sa; si B: sb; si les deux: ss).
 - push : déplacer le premier int d'une stack au sommet de l'autre (si déplace sur A: pa; si déplace sur B; pb).
@@ -34,7 +34,7 @@ Un tableau réserve un espace mémoire dans lequel il peut stocker des valeurs, 
 La liste chaînée en revanche met en lien des valeurs éparpillées dans la mémoire, en utilisant des pointeurs: la première pointe sur la deuxième, qui pointe sur la troisième, et ainsi de suite; la dernière pointe sur NULL. Pour imager, on pourrait dire que les valeurs d'une liste chaînée sont les postes d'un rallye, chacun menant au poste suivant. Pour en trouver un spécifique, il faut commencer par le début et parcourir le chemin jusqu'au poste recherché. Dit comme ca, les liste chaînées, ça a l'air très nul. Cependant, elles offrent un avantage non négligeable dans un programme de tri: là où un tableau devrait décaler toutes ses valeurs pour en ajouter ou en enlever une tout en gérant constamment l'espace mémoire, la liste chainée n'a qu'à modifier ses pointeurs.
 
 ## Comment écrire une liste chaînée?
-Si vous n'êtes pas à l'aise avec les pointeurs, accrochez-vous (ca va aller).
+Si vous n'êtes pas à l'aise avec les pointeurs, accrochez-vous (ça va aller).
 
 ### Structures
 Tout d'abord, pour ce projet du moins, on a besoin d'une structure, dont voici disons l'architecture de base:
@@ -95,7 +95,7 @@ while (place > 0)
 	place --;
 }
 ```
-Si vous voulez aller jusqu'à la fin de la chaine, servez-vous du fait que le dernier chaînon est identifiable parce qu'il pointe sur NULL:
+Si vous voulez aller jusqu'à la fin de la chaîne, servez-vous du fait que le dernier chaînon est identifiable parce qu'il pointe sur NULL:
 ```
 while (copy->next != NULL)
 	copy = copy->next;
