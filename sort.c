@@ -113,18 +113,22 @@ int find_max(node_t **head, int size)
 	return (j);
 }
 
-int find_min(node_t **head, int size)
+int find_min(node_t **head)
 {
 	node_t  *current;
+	node_t  *bottom;
 	int     min;
 	int		i;
 	int     j;
 
 	current = *head;
+	bottom = *head;
+	while (bottom->next)
+		bottom = bottom->next;
 	min = current->data;
 	i = 0;
 	j = 0;
-	while (i < size)
+	while (current != bottom)
 	{
 		if (current->data < min)
 		{
@@ -134,6 +138,8 @@ int find_min(node_t **head, int size)
 		current = current->next;
 		i ++;
 	}
+	if (bottom->data < min)
+		j = i + 1;
 	return (j);
 }
 
@@ -250,9 +256,6 @@ void    finish(node_t **a, node_t **b, int size)
 
 void    five_or_less(node_t **a, node_t **b, int size_a)
 {
-	int min;
-
-	min = 0; 
 	if (size_a < 2)
 		return;
 	else if (size_a == 2)
@@ -261,17 +264,23 @@ void    five_or_less(node_t **a, node_t **b, int size_a)
 		sort_3(a, 'a');
 	else if (size_a == 4)
 	{
-		min = find_min(a, 4);
-		put_to_top_and_push(a, b, min, 0);
+		put_min_to_top(a, 4);
+		pb(a, b);
+		//min = find_min(a);
+		//put_to_top_and_push(a, b, min, 0);
 		sort_3(a, 'a');
 		finish(a, b, 4);
 	}
 	else if (size_a == 5)
 	{
-		min = find_min(a, 5);
-		put_to_top_and_push(a, b, min, 0);
-		min = find_min(a, 4);
-		put_to_top_and_push(a, b, min, 0);
+		//min = find_min(a);
+		put_min_to_top(a, 5);
+		pb(a, b);
+		put_min_to_top(a, 4);
+		pb(a, b);
+		//put_to_top_and_push(a, b, min, 0);
+		//min = find_min(a);
+		//put_to_top_and_push(a, b, min, 0);
 		sort_3(a, 'a');
 		finish(a, b, 5);
 	}
@@ -486,7 +495,7 @@ int	check_target(node_t **a, node_t **b)
 	ref = (*b)->data;
 	target = 0;
 	if (is_greater_or_smaller_than_all(a, ref))
-		return (target = find_min(a, get_stack_size(a)));
+		return (target = find_min(a));
 	if ((ref < current_a->data && ref > bottom_a->data))
 		return (target);
 	while (!(ref > current_a->data && ref < current_a->next->data))
@@ -523,13 +532,35 @@ void	rotate_and_push(node_t **a, node_t **b, int target)
 	pa(a, b);
 }
 
+void	put_min_to_top(node_t **a, int nelem)
+{
+	int	min;
+
+	min = find_min(a);
+	if (min <= nelem / 2)
+	{
+		while (min)
+		{
+			rotate(a, 'a');
+			min --;
+		}
+	}
+	else
+	{
+		while (nelem - min)
+		{
+			rev_rotate(a, 'a');
+			min ++;
+		}
+	}
+}
+
 void    more_than_five(node_t **a, node_t **b, int size_a)
 {
 	int     cheapest;
 	int     target;
 	int     nelem;
 	int     total;
-	int		min;
 
 	total = size_a;
 	pb(a, b);
@@ -554,23 +585,8 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 		//display_list(a, b);
 		nelem --;
 	}
-	min = find_min(a, total);
-	if (min <= total / 2)
-	{
-		while (min)
-		{
-			rotate(a, 'a');
-			min --;
-		}
-	}
-	else
-	{
-		while (total - min)
-		{
-			rev_rotate(a, 'a');
-			min ++;
-		}
-	}
+	put_min_to_top(a, total);
+
 	//finish(a, b, total);
 }
 

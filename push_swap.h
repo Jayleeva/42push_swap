@@ -17,6 +17,7 @@ typedef struct node
 }			node_t;
 
 int		check_error(int nelem, char **tab);
+void	put_min_to_top(node_t **a, int nelem);
 void	display_list(node_t **a, node_t **b);
 int		get_stack_size(node_t **list);
 void	s(node_t **head, char stack);
