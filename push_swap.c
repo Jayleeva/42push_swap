@@ -58,11 +58,19 @@ int	main(int argc, char **argv)
 	node_t	*list_b;
 	char	**tab;
 
-	//tab = argv;
-	(void)argv;
-	argc = 10;
+	tab = argv;
+	//(void)argv;
+	/*argc = 9;
 	tab = (char **)malloc((argc + 1) *sizeof(char*));
-	tab[1] = "5";
+	tab[1] = "4";
+	tab[2] = "12";
+	tab[3] = "22";
+	tab[4] = "3";
+	tab[5] = "5";
+	tab[6] = "6";
+	tab[7] = "71";
+	tab[8] = "1";*/
+	/*tab[1] = "5";
 	tab[2] = "2";
 	tab[3] = "7";
 	tab[4] = "1";
@@ -71,6 +79,7 @@ int	main(int argc, char **argv)
 	tab[7] = "9";
 	tab[8] = "4";
 	tab[9] = "8";
+	*/
 
 	//4 12 22 3 5 6 71 1
 	//2 1 3 6 5 8
