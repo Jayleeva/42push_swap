@@ -112,7 +112,7 @@ Je ne maîtrise pas complètement ces histoires de pointeurs, mais voilà ce que
 ## Modifier les listes chaînées
 Les différentes actions autorisées (swap, push, rotate, reverse rotate) vont directement modifier nos listes chaînées. Puisqu'on travaille avec des pointeurs, pas besoin pour nos fonctions "actions" de retourner quoi que ce soit.
 
-Petite precision: il est possible de faire une liste chainee circulaire, qui facilite notamment le rotate et reverse rotate. Personnellement, j'ai opte pour ce que je comprenais le mieux sur le moment, sen laissant le dernier element pointer sur NULL.
+Petite precision: il est possible de faire une liste chainee circulaire, qui facilite notamment le rotate et reverse rotate. Personnellement, j'ai opte pour ce que je comprenais le mieux sur le moment, en laissant le dernier element pointer sur NULL.
 
 ### swap
 1. Stocker le pointeur reçu en argument (sommet actuel de la pile) ainsi que le chaînon suivant dans des copies séparées. ``top_cpy = *top; second = *top;``
