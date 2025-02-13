@@ -89,18 +89,22 @@ void    sort_3(node_t **head, char stack)
 	}
 }
 
-int find_max(node_t **head, int size)
+int find_max(node_t **head)
 {
 	node_t  *current;
+	node_t  *bottom;
 	int     max;
 	int		i;
 	int     j;
 
 	current = *head;
+	bottom = *head;
+	while (bottom->next)
+		bottom = bottom->next;
 	max = current->data;
 	i = 0;
 	j = 0;
-	while (i < size)
+	while (current != bottom)
 	{
 		if (current->data > max)
 		{
@@ -110,6 +114,8 @@ int find_max(node_t **head, int size)
 		current = current->next;
 		i ++;
 	}
+	if (bottom->data > max)
+		j = i + 1;
 	return (j);
 }
 
@@ -139,7 +145,7 @@ int find_min(node_t **head)
 		i ++;
 	}
 	if (bottom->data < min)
-		j = i + 1;
+		j = i; // +1
 	return (j);
 }
 
@@ -338,7 +344,7 @@ void    set_cost_to_push(node_t *current_a, node_t **b)
 	}
 	if (is_greater_or_smaller_than_all(b, ref) == 1)
 	{
-		i = find_max(b, size_b);
+		i = find_max(b);
 		current_a->target = i;
 		if (i <= size_b / 2)
 			current_a->cost_to_push = i;
@@ -561,6 +567,7 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 	int     target;
 	int     nelem;
 	int     total;
+	//int		size_b;
 
 	total = size_a;
 	pb(a, b);
@@ -575,6 +582,24 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 		//display_list(a, b);
 		nelem --;
 	}
+	/*size_b = get_stack_size(b);
+	nelem = find_max(b);
+	if (nelem <= size_b / 2)
+	{
+		while (nelem)
+		{
+			rotate(a, 'a');
+			nelem --;
+		}
+	}
+	else
+	{
+		while (size_b - nelem)
+		{
+			rev_rotate(a, 'a');
+			nelem ++;
+		}
+	}*/
 	sort_3(a, 'a');
 	//display_list(a, b);
 	nelem = get_stack_size(b);
@@ -586,7 +611,6 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 		nelem --;
 	}
 	put_min_to_top(a, total);
-
 	//finish(a, b, total);
 }
 
@@ -595,12 +619,12 @@ void	sort(node_t **a, node_t **b)
 	int size_a;
 
 	size_a = get_stack_size(a);
-	display_list(a, b);
+	//display_list(a, b);
 	if (is_sorted(a, 'a') == 1)
 		return;
 	if (size_a <= 5)
 		five_or_less(a, b, size_a);
 	else
 		more_than_five(a, b, size_a);
-	display_list(a, b);
+	//display_list(a, b);
 }

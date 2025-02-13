@@ -60,9 +60,16 @@ int	main(int argc, char **argv)
 
 	tab = argv;
 	//(void)argv;
-	/*argc = 6;
-	tab = (char **)malloc((argc + 1) *sizeof(char*));
-	tab[1] = "6";
+	/*argc = 10;
+	tab = (char **)malloc((argc + 1) *sizeof(char*));*/
+	/*tab[1] = "2";
+	tab[2] = "9";
+	tab[3] = "8";
+	tab[4] = "5";
+	tab[5] = "4";
+	tab[6] = "12";
+	tab[7] = "7";*/
+	/*tab[1] = "6";
 	tab[2] = "18";
 	tab[3] = "22";
 	tab[4] = "3";
@@ -83,8 +90,8 @@ int	main(int argc, char **argv)
 	tab[6] = "3";
 	tab[7] = "9";
 	tab[8] = "4";
-	tab[9] = "8";
-	*/
+	tab[9] = "8";*/
+	
 
 	//4 12 22 3 5 6 71 1
 	//2 1 3 6 5 8
