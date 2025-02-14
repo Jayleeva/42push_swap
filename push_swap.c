@@ -4,6 +4,14 @@
 #include "write_actions.c"
 #include "display.c"
 #include "sort.c"
+#include "sort_five_or_less.c"
+#include "sort_more_than_five.c"
+#include "push_back_to_a.c"
+#include "compute_cost.c"
+#include "is_greater_smaller.c"
+#include "find_min_max.c"
+#include "to_top.c"
+//#include "free_all.c"
 
 int	get_stack_size(node_t **list)
 {
@@ -38,7 +46,6 @@ node_t	*make_list(int argc, char **argv)
 	{
 		while (current->next != NULL)
 		{
-			//current->precedent = current;
 			current->cost = 0;
 			current = current->next;
 		}
@@ -59,9 +66,8 @@ int	main(int argc, char **argv)
 	char	**tab;
 
 	tab = argv;
-	//(void)argv;
 	/*argc = 10;
-	tab = (char **)malloc((argc + 1) *sizeof(char*));*/
+	tab = (char **)malloc((argc + 1) * sizeof(char*));*/
 	/*tab[1] = "2";
 	tab[2] = "9";
 	tab[3] = "8";
@@ -92,9 +98,6 @@ int	main(int argc, char **argv)
 	tab[8] = "4";
 	tab[9] = "8";*/
 	
-
-	//4 12 22 3 5 6 71 1
-	//2 1 3 6 5 8
 	if (argc > 1)
 	{
 		//ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS, CHANGER LES STRING EN INT (attention aux espaces + utiliser atoi)
@@ -103,5 +106,6 @@ int	main(int argc, char **argv)
 		list_a = make_list(argc, tab);
 		list_b = NULL;
 		sort(&list_a, &list_b);
+		//free_all(&list_a);
 	}
 }
