@@ -12,6 +12,7 @@
 #include "find_min_max.c"
 #include "to_top.c"
 #include "free_all.c"
+#include "split.c"
 
 int	get_stack_size(node_t **list)
 {
@@ -64,14 +65,19 @@ int	main(int argc, char **argv)
 	node_t	*list_a;
 	node_t	*list_b;
 	char	**tab;
+	char	**new_tab;
 
 	tab = argv;
 	if (argc > 1)
 	{
 		//ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS, CHANGER LES STRING EN INT (attention aux espaces + utiliser atoi)
-		if (check_error(argc, tab) == 1)
+		if (argc == 2)
+			new_tab = ft_split(argv[1], ' ');
+		else
+			new_tab = tab;
+		if (check_error(argc, new_tab) == 1)
 			return (0);
-		list_a = make_list(argc, tab);
+		list_a = make_list(argc, new_tab);
 		list_b = NULL;
 		sort(&list_a, &list_b);
 		free_all(list_a);

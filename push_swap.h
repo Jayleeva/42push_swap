@@ -16,6 +16,11 @@ typedef struct node
 	int		cost;
 }			node_t;
 
+size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *src);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	**ft_split(char const *s, char c);
+
 int		check_error(int nelem, char **tab);
 void	sort(node_t **a, node_t **b);
 int 	is_sorted(node_t **head, char stack);

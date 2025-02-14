@@ -15,7 +15,7 @@ static int	is_number(int nelem, char **tab)
 		{
 			if (tab[i][j] < '0' || tab[i][j] > '9')
 			{
-				write(1, "Error: not a number\n", 20);
+				write(1, "Error\n", 6); // write(1, "Error: not a number\n", 20);
 				return (1);
 			}
 			j ++;
@@ -31,7 +31,7 @@ static int	check(int k, int j, char *s, char *num)
 		k = 1;
 	if ((k == 0 && j > 10) || (k == 1 && j > 11))
 	{
-		write(1, "ErrorA: not an int\n", 19);
+		write(1, "Error\n", 6); // write(1, "ErrorA: not an int\n", 19);
 		return (1);
 	}
 	else if ((k == 0 && j == 10) || (k == 1 && j == 11))
@@ -43,7 +43,7 @@ static int	check(int k, int j, char *s, char *num)
 		{
 			if ((k == 0 && s[j] > '7') || (k == 1 && s[j] > '8')) // vérifier le dernier chiffre,
 			{
-				write(1, "ErrorC: not an int\n", 19);
+				write(1, "Error\n", 6); // write(1, "ErrorC: not an int\n", 19);
 				return (1);
 			}
 		}
@@ -54,7 +54,7 @@ static int	check(int k, int j, char *s, char *num)
 			{
 				if (s[j] > num[j -k])
 				{
-					write(1, "ErrorB: not an int\n", 19);
+					write(1, "Error\n", 6); // write(1, "ErrorB: not an int\n", 19);
 					return (1);
 				}
 				else if (s[j] < num[j -k])
@@ -74,9 +74,9 @@ static int	is_int(int nelem, char **tab) // atoi corrige en un int...
 	int		k;
 	char	*num;
 
-	num = (char *)malloc((9 + 1) * sizeof(char));
+	/*num = (char *)malloc((9 + 1) * sizeof(char));
 	if (num == NULL)
-		return (1);
+		return (1);*/
 	num = "214748364";
 	i = 1;
 	while (i < nelem)
@@ -86,10 +86,10 @@ static int	is_int(int nelem, char **tab) // atoi corrige en un int...
 		while (tab[i][j])
 			j ++;
 		if (check(k, j, tab[i], num))
-			return (free(num), 1);
+			return (1);
 		i ++;
 	}
-	return (free(num), 0);
+	return (0);
 }
 
 static int	is_duplicate(int nelem, char **tab)
@@ -109,7 +109,7 @@ static int	is_duplicate(int nelem, char **tab)
 			n2 = atoi(tab[j]);
 			if (n == n2)
 			{
-				write(1, "Error: duplicate\n", 17);
+				write(1, "Error\n", 6); // write(1, "Error: duplicate\n", 17);
 				return (1);
 			}
 			j ++;
