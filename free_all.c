@@ -8,8 +8,8 @@ void	free_all(node_t **list)
 	copy = *list;
 	while (copy != NULL)
 	{
-		free(copy);
 		current = copy->next;
+		free(copy);
 		copy = current;
 	}
 }

@@ -11,7 +11,7 @@
 #include "is_greater_smaller.c"
 #include "find_min_max.c"
 #include "to_top.c"
-//#include "free_all.c"
+#include "free_all.c"
 
 int	get_stack_size(node_t **list)
 {
@@ -66,11 +66,11 @@ int	main(int argc, char **argv)
 	char	**tab;
 
 	tab = argv;
-	/*argc = 10;
-	tab = (char **)malloc((argc + 1) * sizeof(char*));*/
-	/*tab[1] = "2";
+	/*argc = 8;
+	tab = (char **)malloc((argc + 1) * sizeof(char*));
+	tab[1] = "2";
 	tab[2] = "9";
-	tab[3] = "8";
+	tab[3] = "2147483647";
 	tab[4] = "5";
 	tab[5] = "4";
 	tab[6] = "12";
@@ -106,6 +106,6 @@ int	main(int argc, char **argv)
 		list_a = make_list(argc, tab);
 		list_b = NULL;
 		sort(&list_a, &list_b);
-		//free_all(&list_a);
+		free_all(&list_a);
 	}
 }

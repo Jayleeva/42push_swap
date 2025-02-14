@@ -25,7 +25,49 @@ static int	is_number(int nelem, char **tab)
 	return (0);
 }
 
-/*static int	is_int(int nelem, char **tab) // atoi corrige en un int...
+static int	check(int k, int j, char *s, char *num)
+{
+	if (s[0] == '-')
+		k = 1;
+	if ((k == 0 && j > 10) || (k == 1 && j > 11))
+	{
+		write(1, "ErrorA: not an int\n", 19);
+		return (1);
+	}
+	else if ((k == 0 && j == 10) || (k == 1 && j == 11))
+	{
+		j = k;
+		while (s[j] == num[j - k] && num[j -k]) //si tab[i] - le dernier char est égal à num, 
+			j ++;
+		if ((k == 0 && j == 9) || (k == 1 && j == 10))
+		{
+			if ((k == 0 && s[j] > '7') || (k == 1 && s[j] > '8')) // vérifier le dernier chiffre,
+			{
+				write(1, "ErrorC: not an int\n", 19);
+				return (1);
+			}
+		}
+		else  //sinon les précédents, en partant du premier.
+		{
+			j = k;
+			while (num[j - k])
+			{
+				if (s[j] > num[j -k])
+				{
+					write(1, "ErrorB: not an int\n", 19);
+					return (1);
+				}
+				else if (s[j] < num[j -k])
+					break;
+				else if (s[j] == num[j -k])
+					j ++;
+			}
+		}
+	}
+	return (0);
+}
+
+static int	is_int(int nelem, char **tab) // atoi corrige en un int...
 {
 	int		i;
 	int		j;
@@ -43,47 +85,12 @@ static int	is_number(int nelem, char **tab)
 		j = 0;
 		while (tab[i][j])
 			j ++;
-		if (tab[i][0] == '-')
-			k = 1;
-		if ((k == 0 && j > 10) || (k == 1 && j > 11))
-		{
-			write(1, "ErrorA: not an int\n", 19);
+		if (check(k, j, tab[i], num))
 			return (1);
-		}
-		else if ((k == 0 && j == 10) || (k == 1 && j == 11))
-		{
-			j = k;
-			while (tab[i][j] == num[j - k] && num[j -k]) //si tab[i] - le dernier char est égal à num, 
-				j ++;
-			if ((k == 0 && j == 9) || (k == 1 && j == 10))
-			{
-				if ((k == 0 && tab[i][j] > '7') || (k == 1 && tab[i][j] > '8')) // vérifier le dernier chiffre,
-				{
-					write(1, "ErrorC: not an int\n", 19);
-					return (1);
-				}
-			}
-			else  //sinon les précédents, en partant du premier.
-			{
-				j = k;
-				while (num[j - k])
-				{
-					if (tab[i][j] > num[j -k])
-					{
-						write(1, "ErrorB: not an int\n", 19);
-						return (1);
-					}
-					else if (tab[i][j] < num[j -k])
-						break;
-					else if (tab[i][j] == num[j -k])
-						j ++;
-				}
-			}
-		}
 		i ++;
 	}
 	return (0);
-}*/
+}
 
 static int	is_duplicate(int nelem, char **tab)
 {
@@ -116,8 +123,8 @@ int	check_error(int nelem, char **tab) // ATTENTION PRENDRE EN COMPTE SI MIS ENT
 {
 	if (is_number(nelem, tab) == 1)
 		return (1);
-	//if (is_int(nelem, tab) == 1)
-	//	return (1);
+	if (is_int(nelem, tab) == 1)
+		return (1);
 	if (is_duplicate(nelem, tab) == 1)
 		return (1);
 	return (0);
