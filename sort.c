@@ -62,7 +62,7 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 	//total = size_a;
 	pb(a, b);
 	pb(a, b);
-	display_list(a, b);
+	//display_list(a, b);
 	nelem = size_a -2;
 	while (nelem > 3)
 	{
@@ -70,17 +70,17 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 		target = find_target(a, cheapest);
 		//printf("cheapest = %d, target = %d\n", cheapest, target);
 		put_to_top_and_push(a, b, cheapest, target);
-		display_list(a, b);
+		//display_list(a, b);
 		nelem --;
 	}
 	sort_3(a, 'a');
-	display_list(a, b);
+	//display_list(a, b);
 	nelem = get_stack_size(b);
 	while (nelem > 0)
 	{
 		target = check_target(a, b);
 		rotate_and_push(a, b, target);
-		display_list(a, b);
+		//display_list(a, b);
 		nelem --;
 	}
 	put_to_top(a, 'a', find_min(a));
@@ -91,12 +91,12 @@ void	sort(node_t **a, node_t **b)
 	int size_a;
 
 	size_a = get_stack_size(a);
-	display_list(a, b);
+	//display_list(a, b);
 	if (is_sorted(a, 'a') == 1)
 		return;
 	if (size_a <= 5)
 		five_or_less(a, b, size_a);
 	else
 		more_than_five(a, b, size_a);
-	display_list(a, b);
+	//display_list(a, b);
 }

@@ -66,38 +66,6 @@ int	main(int argc, char **argv)
 	char	**tab;
 
 	tab = argv;
-	/*argc = 8;
-	tab = (char **)malloc((argc + 1) * sizeof(char*));
-	tab[1] = "2";
-	tab[2] = "9";
-	tab[3] = "2147483647";
-	tab[4] = "5";
-	tab[5] = "4";
-	tab[6] = "12";
-	tab[7] = "7";*/
-	/*tab[1] = "6";
-	tab[2] = "18";
-	tab[3] = "22";
-	tab[4] = "3";
-	tab[5] = "56";*/
-	/*tab[1] = "4";
-	tab[2] = "12";
-	tab[3] = "22";
-	tab[4] = "3";
-	tab[5] = "5";
-	tab[6] = "6";
-	tab[7] = "71";
-	tab[8] = "1";*/
-	/*tab[1] = "5";
-	tab[2] = "2";
-	tab[3] = "7";
-	tab[4] = "1";
-	tab[5] = "6";
-	tab[6] = "3";
-	tab[7] = "9";
-	tab[8] = "4";
-	tab[9] = "8";*/
-	
 	if (argc > 1)
 	{
 		//ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS, CHANGER LES STRING EN INT (attention aux espaces + utiliser atoi)
@@ -106,6 +74,7 @@ int	main(int argc, char **argv)
 		list_a = make_list(argc, tab);
 		list_b = NULL;
 		sort(&list_a, &list_b);
-		free_all(&list_a);
+		free_all(list_a);
+		//list_a = NULL;
 	}
 }

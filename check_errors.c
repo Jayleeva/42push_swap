@@ -86,10 +86,10 @@ static int	is_int(int nelem, char **tab) // atoi corrige en un int...
 		while (tab[i][j])
 			j ++;
 		if (check(k, j, tab[i], num))
-			return (1);
+			return (free(num), 1);
 		i ++;
 	}
-	return (0);
+	return (free(num), 0);
 }
 
 static int	is_duplicate(int nelem, char **tab)
