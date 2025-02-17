@@ -91,10 +91,13 @@ int	main(int argc, char **argv)
 	int		start;
 
 	tab = argv;
-	argc = 2;
-	/*tab = (char **)malloc((argc + 1) *sizeof(char*));
-	tab[0] = "a.out";
+	//argc = 4;
+	//tab = (char **)malloc((argc + 1) *sizeof(char*));
+	/*tab[0] = "a.out";
 	tab[1] = "33 2 4 55";*/
+	/*tab[1] = "3";
+	tab[2] = "2";
+	tab[3] = "1";*/
 	start = 1;
 	if (argc > 1)
 	{
@@ -105,6 +108,8 @@ int	main(int argc, char **argv)
 				start = 0;
 				tab = ft_split(tab[1], ' ');
 				argc = count_elem(tab);
+				if (argc == 1)
+					return (0);
 			}
 			else
 				return (0);

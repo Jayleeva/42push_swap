@@ -91,12 +91,12 @@ void	sort(node_t **a, node_t **b)
 	int size_a;
 
 	size_a = get_stack_size(a);
-	display_list(a, b);
+	//display_list(a, b);
 	if (is_sorted(a, 'a') == 1)
 		return;
 	if (size_a <= 5)
 		five_or_less(a, b, size_a);
 	else
 		more_than_five(a, b, size_a);
-	display_list(a, b);
+	//display_list(a, b);
 }
