@@ -7,7 +7,6 @@ void	s(node_t **head, char stack)
 
 	top = *head;
 	second = (*head)->next;
-	//temp->data = (*head)->next->data;
 	top->next = (*head)->next->next;
 	second->next = top;
 	*head = second;
@@ -26,17 +25,13 @@ void	pa(node_t **head_a, node_t **head_b)
 {
 	node_t	*top_a;
 	node_t	*top_b;
-	//node_t	*temp;
 
 	top_b = *head_b;
 	if (top_b == NULL)
 		return;
 
-	//temp = *head_b;
-	//*head_b = top_b->next;
 	*head_b = (*head_b)->next;
 	top_a = *head_a;
-	//*head_a = temp;
 	*head_a = top_b;
 	(*head_a)->next = top_a;
 	write(1, "pa\n", 3);
@@ -68,7 +63,6 @@ void	rotate(node_t **head, char stack)
 	current = *head;
 	while (current->next != NULL)
 		current = current->next;
-	//*head = top->next;
 	*head = (*head)->next;
 	current->next = top;
 	top->next = NULL;

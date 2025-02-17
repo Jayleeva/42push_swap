@@ -76,5 +76,5 @@ void    rotate_to_top(node_t **head, char stack, int n);
 void    swap_to_top(node_t **a, node_t **b, int elem_a, int elem_b);
 void	put_to_top(node_t **head, char stack, int elem);
 
-void	free_all(node_t *list);
+void	free_list(node_t *list);
 #endif

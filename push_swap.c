@@ -46,10 +46,7 @@ node_t	*make_list(int argc, char **argv, int start)
 	while (i < argc)
 	{
 		while (current->next != NULL)
-		{
-			current->cost = 0;
 			current = current->next;
-		}
 		current->next = (node_t *)malloc(sizeof(node_t));
 		if(current->next == NULL)
 			return (NULL);
@@ -119,6 +116,7 @@ int	main(int argc, char **argv)
 		list_a = make_list(argc, tab, start);
 		list_b = NULL;
 		sort(&list_a, &list_b);
-		free_all(list_a);
+		free_tab(tab);
+		free_list(list_a);
 	}
 }

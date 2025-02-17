@@ -32,7 +32,6 @@ void    five_or_less(node_t **a, node_t **b, int size_a)
 		sort_3(a, 'a');
 	else if (size_a == 4)
 	{
-		//put_min_to_top(a, 4);
 		put_to_top(a, 'a', find_min(a));
 		pb(a, b);
 		sort_3(a, 'a');
@@ -40,10 +39,8 @@ void    five_or_less(node_t **a, node_t **b, int size_a)
 	}
 	else if (size_a == 5)
 	{
-		//put_min_to_top(a, 5);
 		put_to_top(a, 'a', find_min(a));
 		pb(a, b);
-		//put_min_to_top(a, 4);
 		put_to_top(a, 'a', find_min(a));
 		pb(a, b);
 		sort_3(a, 'a');
@@ -56,10 +53,7 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 	int     cheapest;
 	int     target;
 	int     nelem;
-	//int     total;
-	//int		size_b;
 
-	//total = size_a;
 	pb(a, b);
 	pb(a, b);
 	//display_list(a, b);
