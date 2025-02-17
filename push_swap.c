@@ -28,7 +28,7 @@ int	get_stack_size(node_t **list)
 	return (i);
 }
 
-node_t	*make_list(int argc, char **argv)
+node_t	*make_list(int argc, char **argv, int start)
 {
 	node_t	*head;
 	node_t	*current;
@@ -38,10 +38,10 @@ node_t	*make_list(int argc, char **argv)
 	head = (node_t *)malloc(sizeof(node_t));
 	if (head == NULL)
 		return (NULL);
-	head->data = atoi(argv[1]);
+	head->data = atoi(argv[start]);
 	head->next = NULL;
 //assigner toutes les ->data: grâce à ma fin-repère définie tout à l'heure, je peux remonter la chaîne: je vais jusqu'au dernier et lui alloue l'espace, puis assigne avec atoi, et je nullifie le ->next, pour que la prochaine itération remonte un cran.
-	i = 2;
+	i = start + 1;
 	current = head;
 	while (i < argc)
 	{
@@ -60,27 +60,60 @@ node_t	*make_list(int argc, char **argv)
 	return (head);
 }
 
+int	has_space(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == ' ')
+			return (1);
+		i ++;
+	}
+	return (0);
+}
+
+int	count_elem(char **tab)
+{
+	int	i;
+
+	while (tab[i])
+		i ++;
+	return (i);
+}
+
 int	main(int argc, char **argv)
 {
 	node_t	*list_a;
 	node_t	*list_b;
 	char	**tab;
-	char	**new_tab;
+	int		start;
 
 	tab = argv;
+	argc = 2;
+	/*tab = (char **)malloc((argc + 1) *sizeof(char*));
+	tab[0] = "a.out";
+	tab[1] = "33 2 4 55";*/
+	start = 1;
 	if (argc > 1)
 	{
-		//ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS, CHANGER LES STRING EN INT (attention aux espaces + utiliser atoi)
 		if (argc == 2)
-			new_tab = ft_split(argv[1], ' ');
-		else
-			new_tab = tab;
-		if (check_error(argc, new_tab) == 1)
+		{
+			if (has_space(tab[1]))
+			{	
+				start = 0;
+				tab = ft_split(tab[1], ' ');
+				argc = count_elem(tab);
+			}
+			else
+				return (0);
+		}
+		if (check_error(argc, tab, start))
 			return (0);
-		list_a = make_list(argc, new_tab);
+		list_a = make_list(argc, tab, start);
 		list_b = NULL;
 		sort(&list_a, &list_b);
 		free_all(list_a);
-		//list_a = NULL;
 	}
 }

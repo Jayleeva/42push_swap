@@ -21,7 +21,7 @@ char	*ft_strdup(const char *src);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 
-int		check_error(int nelem, char **tab);
+int		check_error(int nelem, char **tab, int start);
 void	sort(node_t **a, node_t **b);
 int 	is_sorted(node_t **head, char stack);
 void    five_or_less(node_t **a, node_t **b, int size_a);

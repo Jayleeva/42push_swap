@@ -1,11 +1,11 @@
 #include "push_swap.h"
 
-static int	is_number(int nelem, char **tab)
+static int	is_number(int nelem, char **tab, int start)
 {
 	int	i;
 	int	j;
 
-	i = 1;
+	i = start;
 	while (i < nelem)
 	{
 		j = 0;
@@ -67,7 +67,7 @@ static int	check(int k, int j, char *s, char *num)
 	return (0);
 }
 
-static int	is_int(int nelem, char **tab) // atoi corrige en un int...
+static int	is_int(int nelem, char **tab, int start) // atoi corrige en un int...
 {
 	int		i;
 	int		j;
@@ -78,7 +78,7 @@ static int	is_int(int nelem, char **tab) // atoi corrige en un int...
 	if (num == NULL)
 		return (1);*/
 	num = "214748364";
-	i = 1;
+	i = start;
 	while (i < nelem)
 	{
 		k = 0;
@@ -92,14 +92,14 @@ static int	is_int(int nelem, char **tab) // atoi corrige en un int...
 	return (0);
 }
 
-static int	is_duplicate(int nelem, char **tab)
+static int	is_duplicate(int nelem, char **tab, int start)
 {
 	int	i;
 	int	j;
 	int	n;
 	int	n2;
 
-	i = 1;
+	i = start;
 	while (i < nelem -1)
 	{
 		j = i +1;
@@ -119,13 +119,13 @@ static int	is_duplicate(int nelem, char **tab)
 	return (0);
 }
 
-int	check_error(int nelem, char **tab) // ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS!!
+int	check_error(int nelem, char **tab, int start) // ATTENTION PRENDRE EN COMPTE SI MIS ENTRE GUILLEMETS!!
 {
-	if (is_number(nelem, tab) == 1)
+	if (is_number(nelem, tab, start) == 1)
 		return (1);
-	if (is_int(nelem, tab) == 1)
+	if (is_int(nelem, tab, start) == 1)
 		return (1);
-	if (is_duplicate(nelem, tab) == 1)
+	if (is_duplicate(nelem, tab, start) == 1)
 		return (1);
 	return (0);
 }

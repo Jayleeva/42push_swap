@@ -10,6 +10,24 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+char	*ft_strdup(const char *src)
+{
+	int		i;
+	char	*copy;
+
+	copy = (char *) malloc((ft_strlen(src) +1) * sizeof(char));
+	if (copy == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		copy[i] = src[i];
+		i ++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*result;
