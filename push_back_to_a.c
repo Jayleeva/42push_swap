@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   push_back_to_a.c                                    :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: cyglardo <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2025/02/17 16:08:25 by cyglardo       #+#    #+#                */
+/*   Updated: 2025/02/17 16:08:26 by cyglardo       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void    finish(node_t **a, node_t **b, int size)
+void	finish(t_node **a, t_node **b, int size)
 {
 	int	i;
 
@@ -12,13 +24,11 @@ void    finish(node_t **a, node_t **b, int size)
 	}
 }
 
-void	rotate_and_push(node_t **a, node_t **b, int target)
+void	rotate_and_push(t_node **a, t_node **b, int target)
 {
-	//int	t;
 	int	size_a;
 
-	//t = target;
-	size_a = get_stack_size(a);	
+	size_a = get_stack_size(a);
 	if (target <= size_a / 2)
 	{	
 		while (target > 0)
@@ -38,10 +48,10 @@ void	rotate_and_push(node_t **a, node_t **b, int target)
 	pa(a, b);
 }
 
-int	check_target(node_t **a, node_t **b)
+int	check_target(t_node **a, t_node **b)
 {
-	node_t	*current_a;
-	node_t	*bottom_a;
+	t_node	*current_a;
+	t_node	*bottom_a;
 	int		ref;
 	int		target;
 

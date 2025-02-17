@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void	free_list(node_t *list)
+void	free_list(t_node *list)
 {
-	node_t	*copy;
-	node_t	*current;
+	t_node	*copy;
+	t_node	*current;
 
 	copy = list;
 	while (copy != NULL)

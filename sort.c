@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   sort.c                                              :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: cyglardo <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2025/02/17 16:06:11 by cyglardo       #+#    #+#                */
+/*   Updated: 2025/02/17 16:06:12 by cyglardo       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int is_sorted(node_t **head, char stack)
+int	is_sorted(t_node **head, char stack)
 {
-	node_t  *current;
+	t_node	*current;
 
 	current = *head;
 	while (current->next != NULL)
@@ -12,20 +24,15 @@ int is_sorted(node_t **head, char stack)
 			if (current->data > current->next->data)
 				return (0);
 		}
-		/*else if (stack == 'b')
-		{
-			if (current->data < current->next->data)
-				return (0);
-		}*/
 		current = current->next;
 	}
 	return (1);
 }
 
-void    five_or_less(node_t **a, node_t **b, int size_a)
+void	five_or_less(t_node **a, t_node **b, int size_a)
 {
 	if (size_a < 2)
-		return;
+		return ;
 	else if (size_a == 2)
 		sort_2(a, 'a');
 	else if (size_a == 3)
@@ -48,11 +55,11 @@ void    five_or_less(node_t **a, node_t **b, int size_a)
 	}
 }
 
-void    more_than_five(node_t **a, node_t **b, int size_a)
+void	more_than_five(t_node **a, t_node **b, int size_a)
 {
-	int     cheapest;
-	int     target;
-	int     nelem;
+	int	cheapest;
+	int	target;
+	int	nelem;
 
 	pb(a, b);
 	pb(a, b);
@@ -62,7 +69,6 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 	{
 		cheapest = find_cheapest(a, b, nelem);
 		target = find_target(a, cheapest);
-		//printf("cheapest = %d, target = %d\n", cheapest, target);
 		put_to_top_and_push(a, b, cheapest, target);
 		//display_list(a, b);
 		nelem --;
@@ -80,14 +86,14 @@ void    more_than_five(node_t **a, node_t **b, int size_a)
 	put_to_top(a, 'a', find_min(a));
 }
 
-void	sort(node_t **a, node_t **b)
+void	sort(t_node **a, t_node **b)
 {
-	int size_a;
+	int	size_a;
 
 	size_a = get_stack_size(a);
 	//display_list(a, b);
 	if (is_sorted(a, 'a') == 1)
-		return;
+		return ;
 	if (size_a <= 5)
 		five_or_less(a, b, size_a);
 	else

@@ -1,35 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   sort_five_or_less.c                                 :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: cyglardo <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2025/02/17 16:09:20 by cyglardo       #+#    #+#                */
+/*   Updated: 2025/02/17 16:09:21 by cyglardo       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void    sort_2(node_t **head, char stack)
+void	sort_2(t_node **head, char stack)
 {
 	if (is_sorted(head, stack) == 1)
-		return;
+		return ;
 	s(head, stack);
-	return;
+	return ;
 }
 
-void    sort_3(node_t **head, char stack)
+void	sort_3(t_node **head, char stack)
 {
-	node_t  *current;
+	t_node	*current;
 
 	current = *head;
 	if (is_sorted(head, stack) == 1)
-		return;
-	//if (stack == 'a')
-	//{
+		return ;
 	if (current->data > current->next->data)
 	{
 		if (current->next->data > current->next->next->data)
 		{
 			s(head, stack);
-			rev_rotate(head, stack); 
+			rev_rotate(head, stack);
 		}
 		else
 		{
 			if (current->data > current->next->next->data)
-				rotate(head, stack); 
+				rotate(head, stack);
 			else
-				s(head, stack); 
+				s(head, stack);
 		}
 	}
 	else
@@ -37,32 +47,6 @@ void    sort_3(node_t **head, char stack)
 		rev_rotate(head, stack);
 		current = *head;
 		if (current->data > current->next->data)
-			s(head, stack); 
+			s(head, stack);
 	}
 }
-	/*if (stack == 'b')
-	{
-		if (current->data < current->next->data)
-		{
-			if (current->next->data < current->next->next->data)
-			{
-				s(head, stack);
-				rev_rotate(head, stack); 
-			}
-			else
-			{
-				if (current->data < current->next->next->data)
-					rotate(head, stack); 
-				else
-					s(head, stack); 
-			}
-		}
-		else
-		{
-			rev_rotate(head, stack);
-			current = *head;
-			if (current->data < current->next->data)
-				s(head, stack); 
-		}
-	}*/
-

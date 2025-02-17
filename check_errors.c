@@ -28,26 +28,26 @@ static int	is_number(int nelem, char **tab, int start)
 static int	check(int k, int j, char *s, char *num)
 {
 	j = k;
-	while (s[j] == num[j - k] && num[j - k]) //si tab[i] - le dernier char est égal à num, 
+	while (s[j] == num[j - k] && num[j - k])
 		j ++;
 	if ((k == 0 && j == 9) || (k == 1 && j == 10))
 	{
-		if ((k == 0 && s[j] > '7') || (k == 1 && s[j] > '8')) // vérifier que le dernier chiffre,
+		if ((k == 0 && s[j] > '7') || (k == 1 && s[j] > '8'))
 		{
-			write(1, "Error\n", 6); // write(1, "ErrorC: not an int\n", 19);
+			write(1, "Error\n", 6);
 			return (1);
 		}
 	}
-	else  //sinon tous les précédents, en partant du premier.
+	else
 		while (num[j - k])
 		{
 			if (s[j] > num[j - k])
 			{
-				write(1, "Error\n", 6); // write(1, "ErrorB: not an int\n", 19);
+				write(1, "Error\n", 6);
 				return (1);
 			}
 			else if (s[j] < num[j - k])
-				break;
+				break ;
 			else if (s[j] == num[j - k])
 				j ++;
 		}
@@ -71,7 +71,7 @@ static int	is_int(int nelem, char **tab, int start)
 			j ++;
 		if ((k == 0 && j > 10) || (k == 1 && j > 11))
 		{
-			write(1, "Error\n", 6); // write(1, "ErrorA: not an int\n", 19);
+			write(1, "Error\n", 6);
 			return (1);
 		}
 		else if ((k == 0 && j == 10) || (k == 1 && j == 11))

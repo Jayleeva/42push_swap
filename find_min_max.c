@@ -1,11 +1,11 @@
 #include "push_swap.h"
 
-int find_max(node_t **head)
+int	find_max(t_node **head)
 {
-	node_t  *current;
-	int     max;
+	t_node	*current;
+	int		max;
 	int		i;
-	int     j;
+	int		j;
 	int		size;
 
 	current = *head;
@@ -27,12 +27,12 @@ int find_max(node_t **head)
 	return (j);
 }
 
-int find_min(node_t **head)
+int	find_min(t_node **head)
 {
-	node_t  *current;
-	int     min;
+	t_node	*current;
+	int		min;
 	int		i;
-	int     j;
+	int		j;
 	int		size;
 
 	current = *head;

@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void	display_list(node_t **a, node_t **b)
+void	display_list(t_node **a, t_node **b)
 {
-	node_t	*current_a;
-	node_t	*current_b;
+	t_node	*current_a;
+	t_node	*current_b;
 
 	current_a = *a;
 	current_b = *b;
@@ -19,14 +19,11 @@ void	display_list(node_t **a, node_t **b)
 	printf("---\n a\n\n***\n\n");
 	if (current_b != NULL)
 	{
-		//write(1, "* 1\n", 4);
 		while (current_b->next != NULL)
 		{
-			//write(1, "* 2\n", 4);
 			printf(" %d\n", current_b->data);
 			current_b = current_b->next;
 		}
-		//write(1, "* 3\n", 4);
 		printf(" %d\n", current_b->data);
 	}
 	printf("---\n b\n===========\n");

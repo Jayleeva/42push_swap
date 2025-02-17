@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   compute_cost.c                                      :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: cyglardo <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2025/02/17 16:07:08 by cyglardo       #+#    #+#                */
+/*   Updated: 2025/02/17 16:07:09 by cyglardo       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void    set_cost_to_push(node_t *current_a, node_t **b)
+void	set_cost_to_push(t_node *current_a, t_node **b)
 {
-	int     ref;
-	int     i;
-	int     size_b;
-	node_t  *current_b;
-	node_t  *bottom_b;
+	int		ref;
+	int		i;
+	int		size_b;
+	t_node	*current_b;
+	t_node	*bottom_b;
 
 	ref = current_a->data;
 	size_b = get_stack_size(b);
@@ -33,7 +45,7 @@ void    set_cost_to_push(node_t *current_a, node_t **b)
 		{
 			current_a->cost_to_push = 0;
 			current_a->target = 0;
-			return;
+			return ;
 		}
 		i = 1;
 		while (!(ref < current_b->data && ref > current_b->next->data))
@@ -47,14 +59,13 @@ void    set_cost_to_push(node_t *current_a, node_t **b)
 		else
 			current_a->cost_to_push = i;
 	}
-
 }
 
-int set_cost(node_t *current_a, node_t **b, int size_a, int i)
+int	set_cost(t_node *current_a, t_node **b, int size_a, int i)
 {
-	int size_b;
-	int j;
-	int k;
+	int	size_b;
+	int	j;
+	int	k;
 
 	size_b = get_stack_size(b);
 	if (i <= size_a / 2)
@@ -66,7 +77,8 @@ int set_cost(node_t *current_a, node_t **b, int size_a, int i)
 	k = 0;
 	if (i > 0 && j > 0)
 	{
-		if ((i <= size_a / 2 && j <= size_b / 2) || (i > size_a / 2 && j > size_b / 2)) 
+		if ((i <= size_a / 2 && j <= size_b / 2) ||
+			(i > size_a / 2 && j > size_b / 2))
 		{
 			current_a->cost_to_top = 0;
 			current_a->cost_to_push = 0;
@@ -87,9 +99,9 @@ int set_cost(node_t *current_a, node_t **b, int size_a, int i)
 			}
 			if (i > size_a / 2 && j > size_b / 2)
 			{
-				if (size_a - i == size_b - j) 
+				if (size_a - i == size_b - j)
 					k = size_a - i;
-				else if (size_a - i < size_b - j) 
+				else if (size_a - i < size_b - j)
 				{
 					k = size_a - i;
 					current_a->cost_to_push = (size_b - j) - k;
@@ -102,6 +114,6 @@ int set_cost(node_t *current_a, node_t **b, int size_a, int i)
 			}
 		}
 	}
-	current_a->cost = k + current_a->cost_to_top + current_a->cost_to_push;    
+	current_a->cost = k + current_a->cost_to_top + current_a->cost_to_push;
 	return (current_a->cost);
 }

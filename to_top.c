@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   to_top.c                                            :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: cyglardo <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2025/02/17 16:06:56 by cyglardo       #+#    #+#                */
+/*   Updated: 2025/02/17 16:06:57 by cyglardo       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void    rev_rotate_to_top(node_t **head, char stack, int n)
+void	rev_rotate_to_top(t_node **head, char stack, int n)
 {
 	while (n > 0)
 	{
@@ -9,7 +21,7 @@ void    rev_rotate_to_top(node_t **head, char stack, int n)
 	}
 }
 
-void    rotate_to_top(node_t **head, char stack, int n)
+void	rotate_to_top(t_node **head, char stack, int n)
 {
 	while (n > 0)
 	{
@@ -18,17 +30,17 @@ void    rotate_to_top(node_t **head, char stack, int n)
 	}
 }
 
-void    swap_to_top(node_t **a, node_t **b, int elem_a, int elem_b)
+void	swap_to_top(t_node **a, t_node **b, int elem_a, int elem_b)
 {
 	if (elem_a == 1 && elem_b == 1)
-		return;
+		return ;
 	else if (elem_a == 1)
 		s(a, 'a');
 	else if (elem_b == 1)
-		s(b,'b');
+		s(b, 'b');
 }
 
-void	put_to_top(node_t **head, char stack, int elem)
+void	put_to_top(t_node **head, char stack, int elem)
 {
 	int		size;
 
