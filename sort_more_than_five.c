@@ -43,7 +43,11 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 	else
 		nactions = *elem_a - *elem_b;
 	if (*elem_a <= (size_a / 2) && *elem_b <= (size_b / 2))
+	{
 		action = 0;
+		*elem_a -= nactions;
+		*elem_b -= nactions;
+	}
 	else
 	{
 		action = 1;
@@ -58,8 +62,8 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 			nactions = size_b - *elem_b;
 		}
 	}
-	*elem_a -= nactions;
-	*elem_b -= nactions;
+	*elem_a += nactions;
+	*elem_b += nactions;
 	move_(a, b, action, nactions);
 }
 
@@ -81,7 +85,7 @@ void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)
 		if (elem_a > 0 && elem_b > 0)
 		{
 			move_together(a, b, &elem_a, &elem_b);
-			while ((size_a - elem_a) >= 0)
+			while (((size_a -1) - elem_a) >= 0)
 			{
 				if (elem_a <= (size_a / 2) && elem_b <= (size_b / 2))
 					rotate(a, 'a');
@@ -89,7 +93,7 @@ void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)
 					rev_rotate(a, 'a');
 				elem_a++;
 			}
-			while ((size_b - elem_b) >= 0)
+			while (((size_b -1) - elem_b) >= 0)
 			{
 				if (elem_a <= (size_a / 2) && elem_b <= (size_b / 2))
 					rotate(b, 'b');
