@@ -15,7 +15,7 @@ void	move_(t_node **a, t_node **b, int action, int min)
 	}
 	else if (action == 1)
 		size = get_stack_size(a);
-	else if (action == 2)
+	else
 		size = get_stack_size(b);
 	while (size - min)
 	{
@@ -35,15 +35,14 @@ void	move_together(t_node **a, t_node **b, int elem_a, int elem_b)
 	size_b = get_stack_size(b);
 	if (elem_a <= elem_b)
 		min = elem_a;
-	else if (elem_b < elem_a)
+	else
 		min = elem_b;
-	if (elem_a <= size_a / 2 && elem_b <= size_b / 2)
-		action = 0;
-	else if (elem_a > size_a / 2 && elem_b > size_b / 2)
+	action = 0;
+	if (elem_a > size_a / 2 && elem_b > size_b / 2)
 	{
 		if (min == elem_a)
 			action = 1;
-		if (min == elem_b)
+		else if (min == elem_b)
 			action = 2;
 	}
 	move_(a, b, action, min);

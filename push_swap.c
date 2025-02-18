@@ -57,24 +57,11 @@ static t_node	*make_list(int argc, char **argv, int start)
 	return (head);
 }
 
-static int	has_space(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == ' ')
-			return (1);
-		i ++;
-	}
-	return (0);
-}
-
 static int	count_elem(char **tab)
 {
 	int	i;
 
+	i = 0;
 	while (tab[i])
 		i ++;
 	return (i);
@@ -96,7 +83,6 @@ static void	treat(int argc, char **tab, int start)
 int	main(int argc, char **argv)
 {
 	char	**tab;
-	int		start;
 
 	tab = argv;
 	//argc = 4;
@@ -106,25 +92,20 @@ int	main(int argc, char **argv)
 	/*tab[1] = "3";
 	tab[2] = "2";
 	tab[3] = "1";*/
-	start = 1;
 	if (argc > 1)
 	{
 		if (argc == 2)
 		{
-			if (has_space(tab[1]))
-			{
-				start = 0;
-				tab = ft_split(tab[1], ' ');
-				argc = count_elem(tab);
-				if (argc == 1)
-					return (0);
-				treat(argc, tab, start);
-				free_tab(tab);
-			}
-			else
+			tab = ft_split(tab[1], ' ');
+			argc = count_elem(tab);
+			if (check_error(argc, tab, 0))
 				return (0);
+			if (argc == 1)
+				return (0);
+			treat(argc, tab, 0);
+			free_tab(tab);
 		}
 		else
-			treat(argc, tab, start);
+			treat(argc, tab, 1);
 	}
 }

@@ -9,7 +9,7 @@ static int	is_number(int nelem, char **tab, int start)
 	while (i < nelem)
 	{
 		j = 0;
-		if (tab[i][0] == '-')
+		if (tab[i][0] == '-' || tab[i][0] == '+')
 			j ++;
 		while (tab[i][j])
 		{
@@ -39,6 +39,7 @@ static int	check(int k, int j, char *s, char *num)
 		}
 	}
 	else
+	{
 		while (num[j - k])
 		{
 			if (s[j] > num[j - k])
@@ -51,6 +52,7 @@ static int	check(int k, int j, char *s, char *num)
 			else if (s[j] == num[j - k])
 				j ++;
 		}
+	}
 	return (0);
 }
 
