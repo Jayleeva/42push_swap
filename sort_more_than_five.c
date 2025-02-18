@@ -50,12 +50,12 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 		if (*elem_a <= *elem_b)
 		{
 			//action = 1;
-			nactions = size_b - *elem_b - *elem_a;
+			nactions = size_b - (*elem_b - *elem_a);
 		}
 		else
 		{
 			//action = 2;
-			nactions = size_a - *elem_a - *elem_b;
+			nactions = size_a - (*elem_a - *elem_b);
 		}
 	}
 	*elem_a -= nactions;
