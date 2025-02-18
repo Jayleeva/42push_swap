@@ -100,14 +100,17 @@ Si vous voulez aller jusqu'à la fin de la chaîne, servez-vous du fait que le d
 while (copy->next != NULL)
 	copy = copy->next;
 ```
-## Creer une liste chainee
-Tout d'abord, il faut allouer de l'espace à un premier chaînon: ``your_node_name = (your_struct_name_t *)malloc(sizeof(your_struct_name_t))``. Une fois cela fait, vous pouvez assigner la valeur du premier argument: ``your_node_name->value = arg_value``, et faire pointer votre chaînon sur NULL (dans le cas d'une liste chaînée, cela revient à dire: le chaînon suivant sera NULL, soit: le chaînon actuel est le dernier): ``your_node_name->next = NULL``. Faites une copie de ce premier chaînon: elle vous servira à parcourir la chaîne.
+## Créer une liste chaînée
+Tout d'abord, il faut allouer de l'espace à un premier chaînon: ``your_node_name = (your_struct_name_t *)malloc(sizeof(your_struct_name_t))``. Une fois cela fait, vous pouvez assigner la valeur du premier argument: ``your_node_name->value = arg_value``, et faire pointer votre chaînon sur NULL (dans le cas d'une liste chaînée, cela revient à dire: le chaînon suivant sera NULL, soit: le chaînon actuel est le dernier de la liste): ``your_node_name->next = NULL``. Faites une copie de ce premier chaînon: elle vous servira à parcourir la chaîne.
 
-Pour la suite, vous avez besoin d'une boucle dans une boucle: une englobante qui s'assure de parcourir tous les arguments reçus, et une interne qui s'assure qu'on est bien au dernier chaînon avant d'en créer un nouveau. Tant qu'il vous reste des arguments à assigner, à chaque fois que vous arrivez au dernier chaînon, allouez à nouveau de l'espace pour un nouveau chaînon et assignez-lui sa valeur et un suivant: 
+Pour la suite, vous avez besoin d'une boucle dans une boucle: une englobante qui s'assure de parcourir tous les arguments reçus, et une interne qui s'assure qu'on est bien au dernier chaînon avant d'en créer un nouveau. Tant qu'il vous reste des arguments à assigner, à chaque fois que vous arrivez au dernier chaînon (soit si le prochain est NULL), allouez à nouveau de l'espace pour un nouveau chaînon et assignez-lui sa valeur et un suivant: 
 ```
-copy->next = (your_struct_name_t *)malloc(sizeof(your_struct_name_t));
-copy->next->value = arg_value;
-copy->next->next = NULL;
+if (copy->next == NULL)
+{
+	copy->next = (your_struct_name_t *)malloc(sizeof(your_struct_name_t));
+	copy->next->value = arg_value;
+	copy->next->next = NULL;
+}
 ```
 Attention, prenez en compte deux choses: le nom du programme est compris comme l'argument 0, et vous avez déjà assigné l'argument 1 dans votre premier chaînon.
 
