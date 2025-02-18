@@ -2,8 +2,6 @@
 
 void	move_(t_node **a, t_node **b, int action, int nactions)
 {
-	//int		size;
-
 	if (action == 0)
 	{
 		while (nactions)
@@ -13,10 +11,6 @@ void	move_(t_node **a, t_node **b, int action, int nactions)
 		}
 		return ;
 	}
-	/*else if (action == 1)
-		size = get_stack_size(a);
-	else
-		size = get_stack_size(b);*/
 	while (nactions)
 	{
 		rrr(a, b);
@@ -26,7 +20,6 @@ void	move_(t_node **a, t_node **b, int action, int nactions)
 
 void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 {
-	//int		min;
 	int		action;
 	int		size_a;
 	int		size_b;
@@ -34,10 +27,6 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 
 	size_a = get_stack_size(a);
 	size_b = get_stack_size(b);
-	/*if (*elem_a <= *elem_b)
-		min = *elem_a;
-	else
-		min = *elem_b;*/
 	if (*elem_a <= *elem_b)
 		nactions = *elem_b - *elem_a;
 	else
@@ -52,15 +41,9 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 	{
 		action = 1;
 		if ((size_a - *elem_a) <= (size_b - *elem_b))
-		{
-			//action = 1;
 			nactions = size_a - *elem_a;
-		}
 		else
-		{
-			//action = 2;
 			nactions = size_b - *elem_b;
-		}
 		*elem_a += nactions;
 		*elem_b += nactions;
 	}
@@ -83,35 +66,15 @@ void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)
 		(elem_a > (size_a / 2) && elem_b > (size_b / 2)))
 	{
 		if (elem_a > 0 && elem_b > 0)
-		{
 			move_together(a, b, &elem_a, &elem_b);
-			while (((size_a -1) - elem_a) > 0)
-			{
-				if (elem_a <= (size_a / 2) && elem_b <= (size_b / 2))
-					rotate(a, 'a');
-				else
-					rev_rotate(a, 'a');
-				elem_a++;
-			}
-			while (((size_b -1) - elem_b) > 0)
-			{
-				if (elem_a <= (size_a / 2) && elem_b <= (size_b / 2))
-					rotate(b, 'b');
-				else
-					rev_rotate(b, 'b');
-				elem_b++;
-			}
-			pb(a, b);
-			return ;
-		}
 	}
 	if (elem_a <= (size_a / 2))
 		rotate_to_top(a, 'a', elem_a);
-	else if (elem_a > size_a / 2)
+	else
 		rev_rotate_to_top(a, 'a', size_a - elem_a);
 	if (elem_b <= size_b / 2)
 		rotate_to_top(b, 'b', elem_b);
-	else if (elem_b > size_b / 2)
+	else
 		rev_rotate_to_top(b, 'b', size_b - elem_b);
 	pb(a, b);
 }
