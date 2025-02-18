@@ -43,17 +43,17 @@ typedef struct your_struct_name
 {
 	int		  		value;
 	struct	your_struct_name 	*next;
-}			    		your_struct_name_t;
+}			    		t_your_struct_name;
 ```
 On peut aussi l'écrire ainsi:
 ```
-typedef struct your_struct_name your_struct_name_t
+typedef struct your_struct_name t_your_struct_name
 {
 	int		  		value;
 	struct	your_struct_name	*next;
 };
 ```
-La reprise du nom de la structure suivie d'un ``_t`` semble être une convention de nommage qui permet de distinguer le "modèle" de la structure et son instance concrète (du moins c'est ainsi que je le comprends).
+La reprise du nom de la structure précédée d'un ``_t`` semble être une convention de nommage qui permet de distinguer le "modèle" de la structure et son instance concrète (du moins c'est ainsi que je le comprends).
 
 ``typedef`` permet de definir un nouveau type de variable.
 
@@ -81,7 +81,7 @@ your_node_name = your_node_name->next;
 ```
 Cependant, si vous le faites directement sur le pointeur, vous perdez le lien avec le chaînon précédent (à moins d'utiliser une liste doublement chaînée, mais nous n'en traiterons pas ici). Si vous devez accéder à un chaînon en particulier sans perdre aucune adresse, faites-en une copie, par exemple:
 ```
-your_struct_name_t	*copy;
+t_your_struct_name	*copy;
 
 copy = *your_list;
 ```
@@ -101,13 +101,13 @@ while (copy->next != NULL)
 	copy = copy->next;
 ```
 ## Créer une liste chaînée
-Tout d'abord, il faut allouer de l'espace à un premier chaînon: ``your_node_name = (your_struct_name_t *)malloc(sizeof(your_struct_name_t))``. Une fois cela fait, vous pouvez assigner la valeur du premier argument: ``your_node_name->value = arg_value``, et faire pointer votre chaînon sur NULL (dans le cas d'une liste chaînée, cela revient à dire: le chaînon suivant sera NULL, soit: le chaînon actuel est le dernier de la liste): ``your_node_name->next = NULL``. Faites une copie de ce premier chaînon: elle vous servira à parcourir la chaîne.
+Tout d'abord, il faut allouer de l'espace à un premier chaînon: ``your_node_name = (t_your_struct_name *)malloc(sizeof(t_your_struct_name))``. Une fois cela fait, vous pouvez assigner la valeur du premier argument: ``your_node_name->value = arg_value``, et faire pointer votre chaînon sur NULL (dans le cas d'une liste chaînée, cela revient à dire: le chaînon suivant sera NULL, soit: le chaînon actuel est le dernier de la liste): ``your_node_name->next = NULL``. Faites une copie de ce premier chaînon: elle vous servira à parcourir la chaîne.
 
 Pour la suite, vous avez besoin d'une boucle dans une boucle: une englobante qui s'assure de parcourir tous les arguments reçus, et une interne qui s'assure qu'on est bien au dernier chaînon avant d'en créer un nouveau. Tant qu'il vous reste des arguments à assigner, à chaque fois que vous arrivez au dernier chaînon (soit si le prochain est NULL), allouez à nouveau de l'espace pour un nouveau chaînon et assignez-lui sa valeur et un suivant: 
 ```
 if (copy->next == NULL)
 {
-	copy->next = (your_struct_name_t *)malloc(sizeof(your_struct_name_t));
+	copy->next = (t_your_struct_name *)malloc(sizeof(t_your_struct_name));
 	copy->next->value = arg_value;
 	copy->next->next = NULL;
 }
@@ -120,7 +120,7 @@ Une fois tous vos arguments assignés dans des chaînons, retournez le premier d
 Les listes chaînées passées par le main sont des pointeurs sur pointeur! En conséquence, quand vous déclarez des fonctions qui en reçoivent, il faut vous inspirer de cette écriture: ``void your_function(**list)``. Oui, vous avez bien vu, ce n'est pas une faute de frappe: il y a bien DEUX étoiles.
 
 Je ne maîtrise pas complètement ces histoires de pointeurs, mais voilà ce que j'ai retenu:
-- quand vous créez vos listes, il faut les déclarer comme des simples pointeurs du type de votre structure ``your_struct_name_t	*list;``, MAIS
+- quand vous créez vos listes, il faut les déclarer comme des simples pointeurs du type de votre structure ``t_your_struct_name	*list;``, MAIS
 - quand vous passez votre liste la première fois (soit depuis le main a priori), il faut utiliser l'éperluette. ``your_function(&list)`` (ce que je crois avoir compris: cela permet de passer non pas la valeur de la liste mais bien son adresse; puisque c'est déjà un pointeur, cela en fait donc... un pointeur sur pointeur)
 - ensuite, vous pouvez vous en passer. ``your_function(list)``
 - dans vos fonctions, quand vous voulez accéder à votre liste directement, il faut le signifier avec un astérisque; les copies que vous voudrez en faire devront également être des pointeurs. En revanche, pour accéder à vos copies, plus besoin d'astérisque une fois la déclaration passée (voir "naviguer dans une liste chaînée" ci-dessus).
