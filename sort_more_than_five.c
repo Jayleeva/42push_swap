@@ -42,13 +42,18 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 	else
 	{
 		if (min == *elem_a)
+		{
 			action = 1;
-		if (min == *elem_b)
+			move_(a, b, action, elem_b - elem_a);
+		}
+		else
+		{
 			action = 2;
+			move_(a, b, action, elem_a - elem_b);
+		}
 	}
 	*elem_a -= min;
 	*elem_b -= min;
-	move_(a, b, action, min);
 }
 
 void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)
