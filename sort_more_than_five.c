@@ -2,6 +2,8 @@
 
 void	move_(t_node **a, t_node **b, int action, int nactions)
 {
+	//int		size;
+
 	if (action == 0)
 	{
 		while (nactions)
@@ -11,6 +13,10 @@ void	move_(t_node **a, t_node **b, int action, int nactions)
 		}
 		return ;
 	}
+	/*else if (action == 1)
+		size = get_stack_size(a);
+	else
+		size = get_stack_size(b);*/
 	while (nactions)
 	{
 		rrr(a, b);
@@ -20,6 +26,7 @@ void	move_(t_node **a, t_node **b, int action, int nactions)
 
 void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 {
+	//int		min;
 	int		action;
 	int		size_a;
 	int		size_b;
@@ -27,10 +34,11 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 
 	size_a = get_stack_size(a);
 	size_b = get_stack_size(b);
+	//printf("Debug: elem_a=%i, elem_b=%i\n", *elem_a, *elem_b);
 	if (*elem_a <= *elem_b)
-		nactions = *elem_b - *elem_a;
+		nactions = *elem_a;
 	else
-		nactions = *elem_a - *elem_b;
+		nactions = *elem_b;
 	if (*elem_a <= (size_a / 2) && *elem_b <= (size_b / 2))
 	{
 		action = 0;

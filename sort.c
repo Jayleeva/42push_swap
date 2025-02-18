@@ -64,14 +64,14 @@ void	more_than_five(t_node **a, t_node **b, int size_a)
 	pb(a, b);
 	pb(a, b);
 	//display_list(a, b);
-	nelem = size_a -2;
+	nelem = get_stack_size(a);
 	while (nelem > 3)
 	{
 		cheapest = find_cheapest(a, b, nelem);
 		target = find_target(a, cheapest);
 		put_to_top_and_push(a, b, cheapest, target);
 		//display_list(a, b);
-		nelem --;
+		nelem = get_stack_size(a);
 	}
 	sort_3(a, 'a');
 	//display_list(a, b);
