@@ -2,7 +2,7 @@
 
 void	move_(t_node **a, t_node **b, int action, int nactions)
 {
-	int		size;
+	//int		size;
 
 	if (action == 0)
 	{
@@ -47,15 +47,15 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 	else
 	{
 		action = 1;
-		if (*elem_a <= *elem_b)
+		if ((size_a - *elem_a) <= (size_b - *elem_b))
 		{
 			//action = 1;
-			nactions = size_b - (*elem_b - *elem_a);
+			nactions = size_b - *elem_b;
 		}
 		else
 		{
 			//action = 2;
-			nactions = size_a - (*elem_a - *elem_b);
+			nactions = size_a - *elem_a;
 		}
 	}
 	*elem_a -= nactions;
