@@ -43,7 +43,7 @@ void	sort_2(t_node **head, char stack);
 void	sort_3(t_node **head, char stack);
 
 void	move_(t_node **a, t_node **b, int action, int min);
-void	move_together(t_node **a, t_node **b, int elem_a, int elem_b);
+void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b);
 void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b);
 int		find_cheapest(t_node **a, t_node **b, int nelem);
 int		find_target(t_node **a, int cheapest);
