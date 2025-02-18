@@ -81,21 +81,21 @@ void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)
 		if (elem_a > 0 && elem_b > 0)
 		{
 			move_together(a, b, &elem_a, &elem_b);
-			while (elem_a > 0)
+			while ((size_a - elem_a) >= 0)
 			{
 				if (elem_a <= (size_a / 2) && elem_b <= (size_b / 2))
 					rotate(a, 'a');
 				else
 					rev_rotate(a, 'a');
-				elem_a--;
+				elem_a++;
 			}
-			while (elem_b > 0)
+			while ((size_b - elem_b) >= 0)
 			{
 				if (elem_a <= (size_a / 2) && elem_b <= (size_b / 2))
 					rotate(b, 'b');
 				else
 					rev_rotate(b, 'b');
-				elem_b--;
+				elem_b++;
 			}
 			pb(a, b);
 			return ;
