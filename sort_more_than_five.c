@@ -1,15 +1,15 @@
 #include "push_swap.h"
 
-void	move_(t_node **a, t_node **b, int action, int min)
+void	move_(t_node **a, t_node **b, int action, int nactions)
 {
 	int		size;
 
 	if (action == 0)
 	{
-		while (min)
+		while (nactions)
 		{
 			rr(a, b);
-			min --;
+			nactions --;
 		}
 		return ;
 	}
@@ -17,43 +17,43 @@ void	move_(t_node **a, t_node **b, int action, int min)
 		size = get_stack_size(a);
 	else
 		size = get_stack_size(b);
-	while (size - min)
+	while (size - nactions)
 	{
 		rrr(a, b);
-		min ++;
+		nactions ++;
 	}
 }
 
 void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 {
-	int		min;
+	//int		min;
 	int		action;
 	int		size_a;
 	int		size_b;
+	int		nactions;
 
 	size_a = get_stack_size(a);
 	size_b = get_stack_size(b);
-	if (*elem_a <= *elem_b)
+	/*if (*elem_a <= *elem_b)
 		min = *elem_a;
 	else
-		min = *elem_b;
+		min = *elem_b;*/
+	if (*elem_a <= *elem_b)
+		nactions = elem_b - elem_a;
+	else
+		nactions = elem_a - elem_b;
 	if (*elem_a <= (size_a / 2) && *elem_b <= (size_b / 2))
 		action = 0;
 	else
 	{
-		if (min == *elem_a)
-		{
+		if (*elem_a <= *elem_b)
 			action = 1;
-			move_(a, b, action, elem_b - elem_a);
-		}
 		else
-		{
 			action = 2;
-			move_(a, b, action, elem_a - elem_b);
-		}
 	}
-	*elem_a -= min;
-	*elem_b -= min;
+	*elem_a -= nactions;
+	*elem_b -= nactions;
+	move_(a, b, action, nactions);
 }
 
 void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)
