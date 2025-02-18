@@ -20,7 +20,7 @@ void	move_(t_node **a, t_node **b, int action, int nactions)
 	while (nactions)
 	{
 		rrr(a, b);
-		nactions ++;
+		nactions --;
 	}
 }
 
