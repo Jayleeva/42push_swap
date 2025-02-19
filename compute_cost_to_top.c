@@ -5,6 +5,7 @@ int	set_revrotate(t_node *current_a, int i, int size_a, int size_b)
 	int	k;
 	int	j;
 
+	k = 0;
 	j = current_a->target;
 	if (size_a - i == size_b - j)
 		k = size_a - i;
@@ -13,7 +14,7 @@ int	set_revrotate(t_node *current_a, int i, int size_a, int size_b)
 		k = size_a - i;
 		current_a->cost_to_push = (size_b - j) - k;
 	}
-	else if (size_b - j < size_a - i)
+	else
 	{
 		k = size_b - j;
 		current_a->cost_to_top = (size_a - i) - k;
@@ -26,6 +27,7 @@ int	set_nrotate(t_node *current_a, int i)
 	int	k;
 	int	j;
 
+	k = 0;
 	j = current_a->target;
 	if (i == j)
 		k = i;
@@ -34,7 +36,7 @@ int	set_nrotate(t_node *current_a, int i)
 		k = i;
 		current_a->cost_to_top = j - i;
 	}
-	else if (j < i)
+	else
 	{
 		k = j;
 		current_a->cost_to_push = i - j;
