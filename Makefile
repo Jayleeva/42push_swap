@@ -9,11 +9,11 @@ CFLAGS = -Wall -Wextra -Werror -I.
 all: $(NAME)
 
 $(NAME): $(OBJ) push_swap.h
-	@${MAKE} -C ./libft
+	@${MAKE} -C ../libft
 	@${CC} ${CFLAGS} ${OBJ} ./libft/libft.a -o $(NAME)
 
 clean:
-	@${MAKE} -C ./libft fclean
+	@${MAKE} -C ../libft fclean
 	rm -f $(OBJ)
 fclean: clean
 	rm -f $(NAME)
