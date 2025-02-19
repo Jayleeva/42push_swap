@@ -10,7 +10,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) push_swap.h
 	@${MAKE} -C libft
-	@${CC} ${CFLAGS} ${OBJ} ./libft/libft.a -o $(NAME)
+	@${CC} ${CFLAGS} ${OBJ} libft/libft -o $(NAME)
 
 clean:
 	@${MAKE} -C libft fclean
