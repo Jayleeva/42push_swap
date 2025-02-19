@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	move_(t_node **a, t_node **b, int action, int nactions)
+void	move_together_util(t_node **a, t_node **b, int action, int nactions)
 {
 	if (action == 0)
 	{
@@ -38,7 +38,7 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 
 	size_a = get_stack_size(a);
 	size_b = get_stack_size(b);
-	nactions = findt_min_stack(elem_a, elem_b);
+	nactions = find_min_stack(elem_a, elem_b);
 	if (*elem_a <= (size_a / 2) && *elem_b <= (size_b / 2))
 	{
 		action = 0;
@@ -55,7 +55,7 @@ void	move_together(t_node **a, t_node **b, int *elem_a, int *elem_b)
 		*elem_a += nactions;
 		*elem_b += nactions;
 	}
-	move_(a, b, action, nactions);
+	move_together_util(a, b, action, nactions);
 }
 
 void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)

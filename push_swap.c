@@ -22,7 +22,9 @@
 #include "sort_five_or_less.c"
 #include "sort_more_than_five.c"
 #include "push_back_to_a.c"
-#include "compute_cost.c"
+//#include "compute_cost.c"
+#include "compute_cost_to_top.c"
+#include "compute_cost_to_push.c"
 #include "is_greater_smaller.c"
 #include "find_cheapest_target.c"
 #include "find_min_max.c"
@@ -85,13 +87,22 @@ int	main(int argc, char **argv)
 	char	**tab;
 
 	tab = argv;
-	//argc = 4;
-	//tab = (char **)malloc((argc + 1) *sizeof(char*));
-	/*tab[0] = "a.out";
-	tab[1] = "33 2 4 55";*/
-	/*tab[1] = "3";
-	tab[2] = "2";
-	tab[3] = "1";*/
+	/*argc = 15;
+	tab = (char **)malloc((argc + 1) *sizeof(char*));
+	tab[1] = "4";
+	tab[2] = "23";
+	tab[3] = "11";
+	tab[4] = "1";
+	tab[5] = "42";
+	tab[6] = "17";
+	tab[7] = "22";
+	tab[8] = "13";
+	tab[9] = "35";
+	tab[10] = "20";
+	tab[11] = "2";
+	tab[12] = "15";
+	tab[13] = "8";
+	tab[14] = "28";*/
 	if (argc > 1)
 	{
 		if (argc == 2)

@@ -55,7 +55,7 @@ void	five_or_less(t_node **a, t_node **b, int size_a)
 	}
 }
 
-void	more_than_five(t_node **a, t_node **b, int size_a)
+void	more_than_five(t_node **a, t_node **b)
 {
 	int	cheapest;
 	int	target;
@@ -92,5 +92,5 @@ void	sort(t_node **a, t_node **b)
 	if (size_a <= 5)
 		five_or_less(a, b, size_a);
 	else
-		more_than_five(a, b, size_a);
+		more_than_five(a, b);
 }

@@ -37,7 +37,7 @@ int		check_error(int nelem, char **tab, int start);
 void	sort(t_node **a, t_node **b);
 int		is_sorted(t_node **head, char stack);
 void	five_or_less(t_node **a, t_node **b, int size_a);
-void	more_than_five(t_node **a, t_node **b, int size_a);
+void	more_than_five(t_node **a, t_node **b);
 
 void	sort_2(t_node **head, char stack);
 void	sort_3(t_node **head, char stack);

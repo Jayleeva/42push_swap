@@ -20,6 +20,16 @@ void	sort_2(t_node **head, char stack)
 	return ;
 }
 
+void	sort_3_util(t_node **head, char stack)
+{
+	t_node	*current;
+
+	rev_rotate(head, stack);
+	current = *head;
+	if (current->data > current->next->data)
+		s(head, stack);
+}
+
 void	sort_3(t_node **head, char stack)
 {
 	t_node	*current;
@@ -43,10 +53,5 @@ void	sort_3(t_node **head, char stack)
 		}
 	}
 	else
-	{
-		rev_rotate(head, stack);
-		current = *head;
-		if (current->data > current->next->data)
-			s(head, stack);
-	}
+		sort_3_util(head, stack);
 }
