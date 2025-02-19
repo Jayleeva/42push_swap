@@ -180,12 +180,14 @@ Tout d'abord, il faut gérer les cas où on reçoit 5 ou moins arguments. On le 
 - Quand il ne reste plus que 3 arguments sur la pile A, on les trie avec notre fonction déjà créée précédemment pour les piles de 3 arguments, puis on vérifie où *pa* chaque argument de la pile B, dans l'ordre de cette dernière, en en identifiant la cible dans A, et on rotate A autant que nécessaire avant de *pa*.
 
 **Calcul du coût**
+
 Le calcul du coût doit prendre en compte:
 - Combien de mouvements sont nécessaires pour amener l'argument actuellement traité au sommet de la pile A. Pour cela, il faut identifier son index actuel dans la pile A ainsi que la taille actuelle de la pile A; si l'index est plus petit ou égal à la moitié de la taille, il faut rotate autant que l'index; sinon, il faut reverse rotate autant que la taille moins l'index. En français, si votre argument est dans la partie supérieure de la pile ou pile à la moitié, on fait monter les arguments avec des rotates, jusqu'à ce que le concerné soit au sommet (donc autant de fois que son index); s'il est dans la partie inférieure de la pile, on fait descendre les arguments avec des reverse rotate, jusqu'à ce que le concerné soit propulsé du dernier rang au premier (donc autant de fois que la taille moins l'index).
 - Combien de mouvements sont nécessaires pour amener la cible de l'argument actuellement traité au sommet de la pile B. Tout d'abord, il faut donc identifier la cible en question et son index dans la pile B; une fois cela fait, on applique la même logique que dans le point précédent.
 - Combien de mouvements peuvent être faits simultanément dans A et B. Repassez en revue vos premiers calculs: l'argument A et sa cible dans B doivent-ils se déplacer dans la même direction? Si oui, ajustez le coût en calculant combien de rotate / reverse rotate ils peuvent faire ensemble, et combien il reste à faire seul pour celui qui est le plus loin de son propre sommet.
 
 **Identifier la cible**
+
 Quand on veut placer un argument de la pile A sur la pile B (la cible est dans B, et la pile B doit être triée du plus grand au plus petit):
 - Si comme moi vous n'avez pas fait de liste chaînée circulaire, vérifiez tout d'abord si votre argument est plus petit que le dernier argument de la pile B ET plus grand que le premier argument de la pile A. Si c'est le cas, vous avez trouvé la cible: votre argument doit pointer sur le premier de B.
 - Ensuite, parcourez la pile B jusqu'à ce que votre argument soit plus petit que celui actuel de B ET plus grand que le suivant de B. Quand cette condition est remplie, vous avez trouvé la cible: votre argument doit être placé entre l'actuel et le suivant de B, et donc pointer sur le suivant de B.
