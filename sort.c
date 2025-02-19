@@ -63,24 +63,20 @@ void	more_than_five(t_node **a, t_node **b, int size_a)
 
 	pb(a, b);
 	pb(a, b);
-	//display_list(a, b);
 	nelem = get_stack_size(a);
 	while (nelem > 3)
 	{
 		cheapest = find_cheapest(a, b, nelem);
 		target = find_target(a, cheapest);
 		put_to_top_and_push(a, b, cheapest, target);
-		//display_list(a, b);
 		nelem = get_stack_size(a);
 	}
 	sort_3(a, 'a');
-	//display_list(a, b);
 	nelem = get_stack_size(b);
 	while (nelem > 0)
 	{
 		target = check_target(a, b);
 		rotate_and_push(a, b, target);
-		//display_list(a, b);
 		nelem --;
 	}
 	put_to_top(a, 'a', find_min(a));
@@ -91,12 +87,10 @@ void	sort(t_node **a, t_node **b)
 	int	size_a;
 
 	size_a = get_stack_size(a);
-	//display_list(a, b);
 	if (is_sorted(a, 'a') == 1)
 		return ;
 	if (size_a <= 5)
 		five_or_less(a, b, size_a);
 	else
 		more_than_five(a, b, size_a);
-	//display_list(a, b);
 }
