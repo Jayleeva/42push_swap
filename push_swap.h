@@ -12,11 +12,7 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <fcntl.h>
+# include "./libft/libft.h"
 
 typedef struct node
 {
@@ -33,7 +29,7 @@ char	*ft_strdup(const char *src);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 
-int		check_error(int nelem, char **tab, int start);
+int		has_error(int nelem, char **tab, int start);
 void	sort(t_node **a, t_node **b);
 int		is_sorted(t_node **head, char stack);
 void	five_or_less(t_node **a, t_node **b, int size_a);
@@ -69,6 +65,7 @@ void	sort(t_node **a, t_node **b);
 void	write_swap(char stack);
 void	write_rotate(char stack);
 void	write_rev_rotate(char stack);
+int		write_error();
 
 void	finish(t_node **a, t_node **b, int size);
 void	rotate_and_push(t_node **a, t_node **b, int target);

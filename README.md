@@ -12,13 +12,16 @@ Projet du 3ème cercle du cursus 42
 ### Gestion des erreurs
 Vous devez vérifier que les arguments reçus sont bien:
 - des chiffres.
-- plus précisement des int (pas de virgules, et rien en-dehors de int_min et int_max).
+- plus précisement des int (rien en-dehors de int_min et int_max; les floats seront gérés comme des int de toute façon).
 - uniques (pas de répétitions).
 
 ATTENTION, les arguments doivent pouvoir être traités de la même façon, peu importe si:
 - ils sont passés sans guillemets (ex.: 2 453 86 9).
 - ils sont passés entre guillemets comme une seule string (ex.: "2 453 86 9").
 - ils sont TOUS passés entre guillemets comme plusieurs string (ex.: "2" "453" "86" "9").
+Liberté est donnée de traiter ou non le mélange de string entre guillemets et sans guillemets comme une erreur.
+
+ATTENTION: les erreurs doivent être signalée par un write() dans la **sortie d'erreur**. En clair, écrivez bien ``write(2, "Error\n", 6);``. Remarquez le retour à la ligne.  
 
 ### Optimisation
 Le nombre d'actions effectuées pour trier doit être minimal. On ne veut pas juste un programme qui trie, on en veut un qui trie vite et évite les calculs inutiles.
@@ -165,10 +168,30 @@ A vous de choisir un algorithme qui vous parle (ou d'en créer un vous-mêmes?).
 ## Algorithme turc
 Tout d'abord, il faut gérer les cas où on reçoit 5 ou moins arguments. On le fait à part parce qu'ils sont "trop faciles" à résoudre et qu'on perdrait finalement du temps de calcul si on les traitait comme des cas plus durs. Au-delà de 5, ça se corse, et un algo est nécessaire. J'ai donc commencé par des conditions qui vérifient si le nombre d'arguments reçus est inférieur ou égal à 5 ou supérieur à 5: en fonction de la réponse, c'est une ou l'autre fonction qui est appelée.
 ### five_or_less()
-- Si 0 OU 1 argument, return. On s'arrête, rien n'est changé, rien n'est imprimé.
+- Si 0 OU 1 argument, return. On s'arrête, rien n'est changé, rien n'est imprimé. *ATTENTION: si le seul argument passé n'est pas valide (pas un nombre ou pas un int), il faut imprimer "Error".*
 - Si 2 arguments: on vérifie si les deux sont déjà dans le bon ordre. Si c'est le cas, return: rien n'est changé, rien n'est imprimé. Sinon, on les échange, soit par swap, rotate ou reverse rotate. 
 - Si 3 arguments: on vérifie si les 3 sont déjà dans le bon ordre. Si c'est le cas, return: rien n'est changé, rien n'est imprimé. Sinon, on les échange: selon l'ordre, soit par swap puis reverse rotate, juste swap, juste rotate, reverse rotate puis swap, ... 
 - Si 4 arguments: on cherche le plus petit argument de a, on le met au sommet de a, et on le push sur b. On relance la fonction qui trie 3 arguments. Une fois les 3 de a restants triés, on push sur a celui précédemment déplacé sur b.
 - Si 5 arguments: on cherche le plus petit argument de a, on le met au sommet de a, et on le push sur b; on fait exactement la même chose une 2ème fois. On relance la fonction qui trie 3 arguments. Une fois les 3 de a restants triés, on push sur a ceux précédemment déplacés sur b.
 ### more_than_five()
+**Les grandes étapes**
+- On commence par faire deux *pb* pour avoir une base sur laquelle travailler.
+- Tant qu'il nous reste plus que 3 arguments sur la pile A, on va compter le coût de déplacement pour chacun et *pb* le moins cher.
+- Quand il ne reste plus que 3 arguments sur la pile A, on les trie avec notre fonction déjà créée précédemment pour les piles de 3 arguments, puis on vérifie où *pa* chaque argument de la pile B, dans l'ordre de cette dernière, en en identifiant la cible dans A, et on rotate A autant que nécessaire avant de *pa*.
+
+**Calcul du coût**
+Le calcul du coût doit prendre en compte:
+- Combien de mouvements sont nécessaires pour amener l'argument actuellement traité au sommet de la pile A. Pour cela, il faut identifier son index actuel dans la pile A ainsi que la taille actuelle de la pile A; si l'index est plus petit ou égal à la moitié de la taille, il faut rotate autant que l'index; sinon, il faut reverse rotate autant que la taille moins l'index. En français, si votre argument est dans la partie supérieure de la pile ou pile à la moitié, on fait monter les arguments avec des rotates, jusqu'à ce que le concerné soit au sommet (donc autant de fois que son index); s'il est dans la partie inférieure de la pile, on fait descendre les arguments avec des reverse rotate, jusqu'à ce que le concerné soit propulsé du dernier rang au premier (donc autant de fois que la taille moins l'index).
+- Combien de mouvements sont nécessaires pour amener la cible de l'argument actuellement traité au sommet de la pile B. Tout d'abord, il faut donc identifier la cible en question et son index dans la pile B; une fois cela fait, on applique la même logique que dans le point précédent.
+- Combien de mouvements peuvent être faits simultanément dans A et B. Repassez en revue vos premiers calculs: l'argument A et sa cible dans B doivent-ils se déplacer dans la même direction? Si oui, ajustez le coût en calculant combien de rotate / reverse rotate ils peuvent faire ensemble, et combien il reste à faire seul pour celui qui est le plus loin de son propre sommet.
+
+**Identifier la cible**
+Quand on veut placer un argument de la pile A sur la pile B (la cible est dans B, et la pile B doit être triée du plus grand au plus petit):
+- Si comme moi vous n'avez pas fait de liste chaînée circulaire, vérifiez tout d'abord si votre argument est plus petit que le dernier argument de la pile B ET plus grand que le premier argument de la pile A. Si c'est le cas, vous avez trouvé la cible: votre argument doit pointer sur le premier de B.
+- Ensuite, parcourez la pile B jusqu'à ce que votre argument soit plus petit que celui actuel de B ET plus grand que le suivant de B. Quand cette condition est remplie, vous avez trouvé la cible: votre argument doit être placé entre l'actuel et le suivant de B, et donc pointer sur le suivant de B.
+
+Quand on veut placer un argument de la pile B sur la pile A (la cible est dans A, et la pile A doit être triée du plus petit au plus grand):
+- Si comme moi vous n'avez pas fait de liste chaînée circulaire, vérifiez tout d'abord si votre argument est plus grand que le dernier argument de la pile B ET plus petit que le premier argument de la pile A. Si c'est le cas, vous avez trouvé la cible: votre argument doit pointer sur le premier de A.
+- Ensuite, parcourez la pile A jusqu'à ce que votre argument soit grand petit que celui actuel de A ET plus petit que le suivant de A. Quand cette condition est remplie, vous avez trouvé la cible: votre argument doit être placé entre l'actuel et le suivant de A, et donc pointer sur le suivant de A.
+
 
