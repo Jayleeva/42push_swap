@@ -36,7 +36,7 @@ void	write_rev_rotate(char stack)
 		write(1, "rrb\n", 4);
 }
 
-int	write_error()
+int	write_error(void)
 {
 	write(2, "Error\n", 6);
 	return (1);

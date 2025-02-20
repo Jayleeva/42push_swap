@@ -65,7 +65,7 @@ void	sort(t_node **a, t_node **b);
 void	write_swap(char stack);
 void	write_rotate(char stack);
 void	write_rev_rotate(char stack);
-int		write_error();
+int		write_error(void);
 
 void	finish(t_node **a, t_node **b, int size);
 void	rotate_and_push(t_node **a, t_node **b, int target);
