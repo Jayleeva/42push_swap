@@ -74,9 +74,9 @@ int	main(int argc, char **argv)
 			tab = ft_split(tab[1], ' ');
 			argc = count_elem(tab);
 			if (has_error(argc, tab, 0))
-				return (0);
+				return (free_tab(tab), 0);
 			if (argc == 1)
-				return (0);
+				return (free_tab(tab), 0);
 			treat(argc, tab, 0);
 			free_tab(tab);
 		}
