@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   sort_more_than_five.c                               :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: cyglardo <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2025/02/20 13:28:14 by cyglardo       #+#    #+#                */
+/*   Updated: 2025/02/20 13:28:15 by cyglardo       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	move_together_util(t_node **a, t_node **b, int action, int nactions)
@@ -70,8 +82,8 @@ void	put_to_top_and_push(t_node **a, t_node **b, int elem_a, int elem_b)
 		pb(a, b);
 		return ;
 	}
-	else if ((elem_a <= (size_a / 2) && elem_b <= (size_b / 2)) ||
-		(elem_a > (size_a / 2) && elem_b > (size_b / 2)))
+	else if ((elem_a <= (size_a / 2) && elem_b <= (size_b / 2))
+		|| (elem_a > (size_a / 2) && elem_b > (size_b / 2)))
 	{
 		if (elem_a > 0 && elem_b > 0)
 			move_together(a, b, &elem_a, &elem_b);

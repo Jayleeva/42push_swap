@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                         ::::::::           */
+/*   compute_cost_to_top.c                               :+:    :+:           */
+/*                                                      +:+                   */
+/*   By: cyglardo <marvin@42.fr>                       +#+                    */
+/*                                                    +#+                     */
+/*   Created: 2025/02/20 13:27:20 by cyglardo       #+#    #+#                */
+/*   Updated: 2025/02/20 13:27:22 by cyglardo       ########   odam.nl        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	set_revrotate(t_node *current_a, int i, int size_a, int size_b)
@@ -53,8 +65,8 @@ void	check_cost(t_node *current_a, int size_a, int size_b, int i)
 	k = 0;
 	if (i > 0 && j > 0)
 	{
-		if ((i <= size_a / 2 && j <= size_b / 2) ||
-			(i > size_a / 2 && j > size_b / 2))
+		if ((i <= size_a / 2 && j <= size_b / 2)
+			|| (i > size_a / 2 && j > size_b / 2))
 		{
 			current_a->cost_to_top = 0;
 			current_a->cost_to_push = 0;

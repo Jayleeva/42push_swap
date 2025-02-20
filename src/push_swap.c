@@ -11,24 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*//#include "../libft/split.c"
-#include "write_output.c"
-#include "check_for_errors.c"
-#include "action_swap.c"
-#include "action_push.c"
-#include "action_rotate.c"
-#include "sort.c"
-#include "sort_five_or_less.c"
-#include "sort_more_than_five.c"
-#include "get_stack_size.c"
-#include "is_greater_smaller.c"
-#include "find_min_max.c"
-#include "compute_cost_to_top.c"
-#include "compute_cost_to_push.c"
-#include "find_cheapest_target.c"
-#include "to_top.c"
-#include "push_back_to_a.c"
-#include "free_all.c"*/
 
 static t_node	*make_list(int argc, char **argv, int start)
 {
