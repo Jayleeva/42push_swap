@@ -2,7 +2,7 @@
 Projet du 3ème cercle du cursus 42
 
 # Consignes:
-**Créer un programme qui reçoit des int en arguments, les stock dans une stack A, et les trie par ordre croissant de facon optimisée à l'aide d'une stack B vide et avec un pannel d'actions limité.**
+**Créer un programme qui reçoit des int en arguments, les stock dans une stack A, et les trie par ordre croissant de façon optimisée à l'aide d'une stack B vide et avec un pannel d'actions limité.**
 ### Les actions possibles
 - swap : échanger les deux premiers int d'une stack (si A: sa; si B: sb; si les deux: ss).
 - push : déplacer le premier int d'une stack au sommet de l'autre (si déplace sur A: pa; si déplace sur B; pb).
