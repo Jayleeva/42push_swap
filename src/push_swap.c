@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 			if (has_space(argv[nelem + 1])
 			{
 				must_free = 1;
-				tab = ft_strjoin(tab, ft_split(argv[1], ' '));
+				tab = ft_strjoin(tab, ft_split(argv[nelem + 1], ' '));
 				argc = count_elem(tab);
 			}
 			nelem --;
