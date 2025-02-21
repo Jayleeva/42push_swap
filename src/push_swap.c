@@ -62,21 +62,58 @@ static void	treat(int argc, char **tab, int start)
 	free_list(list_a);
 }
 
+int	has_space(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == ' ')
+			return (1);
+		i ++;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	char	**tab;
+	int	nelem;
+	int	must_free;
 
 	tab = argv;
+	nelem = argc;
+	must_free = 0;
 	if (argc > 1)
 	{
-		if (argc == 2)
+		while (nelem)
 		{
-			tab = ft_split(tab[1], ' ');
-			argc = count_elem(tab);
-			if (has_error(argc, tab, 0))
+			tab = "";
+			if (has_space(argv[nelem + 1])
+			{
+				must_free = 1;
+				tab = ft_strjoin(tab, ft_split(argv[1], ' '));
+				argc = count_elem(tab);
+			}
+			nelem --;
+		}
+		if (argc == 1)
+		{
+			if (must_free)
 				return (free_tab(tab), 0);
-			if (argc == 1)
+			else
+				return (0);
+		}
+		if (has_error(argc, tab, 0))
+		{
+			if (must_free)
 				return (free_tab(tab), 0);
+			else
+				return (0);
+		}
+		if (must_free)
+		{
 			treat(argc, tab, 0);
 			free_tab(tab);
 		}
