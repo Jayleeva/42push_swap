@@ -23,8 +23,8 @@ Liberté est donnée de traiter ou non le mélange de string entre guillemets et
 
 ATTENTION: les erreurs doivent être signalée par un write() dans la **sortie d'erreur**. En clair, écrivez bien ``write(2, "Error\n", 6);``. Remarquez le retour à la ligne.
 
-ATTENTION: verifiez bien de free() dans vos return la ou cela a du sens. 
-Pour verifier les leaks sur linux: ``valgrind ./your_program arg0 arg1``
+ATTENTION: vérifiez bien de free() dans vos return là où cela a du sens. 
+Pour vérifier les leaks sur linux: ``valgrind ./your_program arg0 arg1``
 
 ### Optimisation
 Le nombre d'actions effectuées pour trier doit être minimal. On ne veut pas juste un programme qui trie, on en veut un qui trie vite et évite les calculs inutiles.
