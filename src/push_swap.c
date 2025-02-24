@@ -79,41 +79,18 @@ int	has_space(char *s)
 int	main(int argc, char **argv)
 {
 	char	**tab;
-	int	nelem;
-	int	must_free;
 
 	tab = argv;
-	nelem = argc;
-	must_free = 0;
 	if (argc > 1)
 	{
-		while (nelem)
+		if (argc == 2)
 		{
-			tab = "";
-			if (has_space(argv[nelem + 1])
-			{
-				must_free = 1;
-				tab = ft_strjoin(tab, ft_split(argv[nelem + 1], ' '));
-				argc = count_elem(tab);
-			}
-			nelem --;
-		}
-		if (argc == 1)
-		{
-			if (must_free)
+			tab = ft_split(tab[1], ' ');
+			argc = count_elem(tab);
+			if (has_error(argc, tab, 0))
 				return (free_tab(tab), 0);
-			else
-				return (0);
-		}
-		if (has_error(argc, tab, 0))
-		{
-			if (must_free)
+			if (argc == 1)
 				return (free_tab(tab), 0);
-			else
-				return (0);
-		}
-		if (must_free)
-		{
 			treat(argc, tab, 0);
 			free_tab(tab);
 		}
