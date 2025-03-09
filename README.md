@@ -67,7 +67,7 @@ La reprise du nom de la structure précédée d'un ``t_`` semble être une conve
 
 ``your_struct_name`` donne un nom personnalisé à votre structure.
 
-Comme vous le voyez, cet exemple de structure contient un int appelé "value": il servira a stocker la valeur du chaînon de la chaîne; par exemple, si c'est le premier chaînon et qu'on a reçu les arguments ``2 453 86 9``, il stockera ``2``. 
+Comme vous le voyez, cet exemple de structure contient un int appelé "value": il servira à stocker la valeur du chaînon de la chaîne; par exemple, si c'est le premier chaînon et qu'on a reçu les arguments ``2 453 86 9``, il stockera ``2``. 
 L'exemple contient également quelque chose appelé "*next". Mais pourquoi diable son type est-il le même que celui qu'on définit avec ``typedef``, comme une sorte de structureception ? Et pourquoi y a-t-il une étoile devant? Il y a une étoile parce que c'est un pointeur, et il est du type même qu'on définit dans notre structure parce qu'on veut qu'il puisse pointer sur un autre chaînon, lui-même de ce type-la.
 
 Pas clair? Peut-être faut-il nous pencher sur ce à quoi servent les structures.
